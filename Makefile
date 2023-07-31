@@ -1,6 +1,6 @@
 NAME=cubed
 CC=cc
-CCFLAGS=-Wall -Werror -Wextra
+CCFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
 
 FILES=main.c\
