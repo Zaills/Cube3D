@@ -1,22 +1,28 @@
 NAME=cubed
 CC=cc
 CCFLAGS=-Wall -Werror -Wextra
+LIBFT=-L ./libft -lft
+
 FILES=main.c\
+
 
 OBJ=$(FILES:.c=.o)
 
 %.o : %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CCFLAGS) $(OBJ) -o $(NAME)
+	$(MAKE) -C ../libft
+	$(CC) $(CCFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
+	$(MAKE) clean -C ../libft
 	rm -f $(OBJ)
 
 fclean: clean
+	$(MAKE) fclean -C ../libft
 	rm -f $(NAME)
 
 re: fclean all
