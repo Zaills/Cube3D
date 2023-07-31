@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "../libft/libft.h"
 
 char *open_file(char *file)
 {
