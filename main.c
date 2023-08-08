@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/08 16:03:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/08 19:26:39 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/parsing.h"
-#include "stdio.h"
 
 char	*skip_space(char *str)
 {
@@ -21,6 +20,27 @@ char	*skip_space(char *str)
 	while ((str[i] == ' ' || str[i] == '\t') && str[i])
 		i++;
 	return (&str[i]);
+}
+
+int	check_identifier(char *str, t_parse *data, char *c)
+{
+	char	*temp;
+	int		i;
+
+	i = 0;
+	if (ft_strncmp(str, c, 1) == 0)
+	{
+		temp = skip_space(&str[1]);
+		while (temp[i])
+		{
+			if (ft_isalpha(temp[i]) && temp[i] != ',')
+				return (-1);
+			i++;
+		}
+	}
+	else
+		return (-1);
+	return (1);
 }
 
 void init_identifier(t_parse *data, char **map)
@@ -41,18 +61,13 @@ void init_identifier(t_parse *data, char **map)
 			data->we_text = ft_strtrim(&temp[2], " \t");
 		if (ft_strncmp(temp, "EA", 2) == 0)
 			data->ea_text = ft_strtrim(&temp[2], " \t");
-		if (ft_strncmp(temp, "F", 1) == 0)
+		if (check_identifier(temp, data, "F") == 1)
 			data->floor = ft_strtrim(&temp[1], " \t");
-		if (ft_strncmp(temp, "C", 1) == 0)
+		if (check_identifier(temp, data, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
 		j++;
 	}
-/* 	printf("no=%s\n", data->no_text);
-	printf("so=%s\n", data->so_text);
-	printf("we=%s\n", data->we_text);
-	printf("ea=%s\n", data->ea_text);
-	printf("floor=%s\n", data->floor);
-	printf("ceil=%s\n", data->ceil); */
+	d_print_parsedata(data);
 }
 
 void	init_parse(t_parse *data)
@@ -87,9 +102,9 @@ void	free_parsedata(t_parse *data)
 int	verif_beg_struct(t_parse *data)
 {
 	if (data->ceil == NULL)
-		return 1;
+		return (output_error(CEIL_ERR));
 	if (data->floor == NULL)
-		return 1;
+		return output_error(FLOOR_ERR);
 	if (data->ea_text == NULL)
 		return 1;
 	if (data->no_text == NULL)
@@ -104,20 +119,19 @@ int	verif_beg_struct(t_parse *data)
 int	main(void)
 {
 	t_parse	data;
-	char *test[] = {"    N ./coins.xpm		  ",
+	char *test[] = {"    NO ./coins.xpm		  ",
 		"					SO ./coins.xpm             ",
 		"                                               WE ./coins.xpm",
 		"   EA ./coins.xpm",
-		"F 		220,100,0    ",
+		"F 		220,100,0   ",
 		"C 					225,30,0    "
 	};
 	init_parse(&data);
 	init_identifier(&data, test);
 	if (verif_beg_struct(&data))
 	{
-		printf("Error\n");
 		free_parsedata(&data);
-		return 1;
+		return (1);
 	}
 	printf("Good\n");
 	free_parsedata(&data);

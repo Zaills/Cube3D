@@ -4,6 +4,8 @@ CCFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
 
 FILES=main.c\
+	utils.c\
+	debug.c\
 
 
 OBJ=$(FILES:.c=.o)
