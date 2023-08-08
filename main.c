@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/07/31 21:22:49 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/08 16:03:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	free_parsedata(t_parse *data)
 		free(data->ceil);
 	if (data->floor != NULL)
 		free(data->floor);
-	if (data->ea_text)
+	if (data->ea_text != NULL)
 		free(data->ea_text);
 	if (data->no_text != NULL)
 		free(data->no_text);
@@ -84,10 +84,27 @@ void	free_parsedata(t_parse *data)
 		free_split(map); */
 }
 
+int	verif_beg_struct(t_parse *data)
+{
+	if (data->ceil == NULL)
+		return 1;
+	if (data->floor == NULL)
+		return 1;
+	if (data->ea_text == NULL)
+		return 1;
+	if (data->no_text == NULL)
+		return 1;
+	if (data->so_text == NULL)
+		return 1;
+	if (data->we_text == NULL)
+		return 1;
+	return 0;
+}
+
 int	main(void)
 {
 	t_parse	data;
-	char *test[] = {"    NO ./coins.xpm		  ",
+	char *test[] = {"    N ./coins.xpm		  ",
 		"					SO ./coins.xpm             ",
 		"                                               WE ./coins.xpm",
 		"   EA ./coins.xpm",
@@ -96,5 +113,12 @@ int	main(void)
 	};
 	init_parse(&data);
 	init_identifier(&data, test);
+	if (verif_beg_struct(&data))
+	{
+		printf("Error\n");
+		free_parsedata(&data);
+		return 1;
+	}
+	printf("Good\n");
 	free_parsedata(&data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/07/31 17:12:26 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/08 16:03:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ typedef struct parsing
 	char	*ceil;
 	char	**map;
 }		t_parse;
+
+char	*open_map(int ac, char **av);
 
 #endif
