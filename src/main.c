@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/11 16:22:31 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:14:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int	main(int ac, char **av)
 	if (verif_beg_struct(&data))
 	{
 		free_parsedata(&data);
+		free_cubed(test);
 		return (1);
 	}
 	printf("Good\n");
