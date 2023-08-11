@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:19:00 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/08 19:26:07 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/11 16:14:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/parsing.h"
+#include "../headers/parsing.h"
 
 int output_error(int code)
 {

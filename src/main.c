@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/08 19:26:39 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/11 16:22:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/parsing.h"
+#include "../headers/parsing.h"
 
 char	*skip_space(char *str)
 {
@@ -116,16 +116,20 @@ int	verif_beg_struct(t_parse *data)
 	return 0;
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_parse	data;
-	char *test[] = {"    NO ./coins.xpm		  ",
+	char	**test;
+	/*char *test[] = {"    NO ./coins.xpm		  ",
 		"					SO ./coins.xpm             ",
 		"                                               WE ./coins.xpm",
 		"   EA ./coins.xpm",
 		"F 		220,100,0   ",
 		"C 					225,30,0    "
-	};
+	};*/
+	test = open_map(ac, av);
+	if (!test)
+		return (0);
 	init_parse(&data);
 	init_identifier(&data, test);
 	if (verif_beg_struct(&data))
@@ -135,4 +139,5 @@ int	main(void)
 	}
 	printf("Good\n");
 	free_parsedata(&data);
+	free_cubed(test);
 }

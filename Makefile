@@ -3,9 +3,11 @@ CC=cc
 CCFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
 
-FILES=main.c\
-	utils.c\
-	debug.c\
+FILES= src/main.c\
+		src/utils.c\
+	src/map/open_file.c \
+	src/map/cub_to_cubed.c \
+	src/debug.c\
 
 
 OBJ=$(FILES:.c=.o)

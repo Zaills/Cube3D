@@ -13,7 +13,31 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "../libft/libft.h"
+#include "../../headers/parsing.h"
+
+char	*n_strjoin(char *str, char *join)
+{
+	char	*out;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	out = ft_calloc(sizeof(char), (ft_strlen(str) + ft_strlen(join) + 1));
+	while (str[i])
+	{
+		out[i] = str[i];
+		i++;
+	}
+	while (join[j])
+	{
+		out[i] = join[j];
+		i++;
+		j++;
+	}
+	free(str);
+	return (out);
+}
 
 char *open_file(char *file)
 {
@@ -28,16 +52,16 @@ char *open_file(char *file)
 	ret = read(fd, str, 10);
 	if (ret == -1)
 		return (0);
-	out = ft_calloc(sizeof(char) * 1);
+	out = ft_calloc(sizeof(char), 1);
 	str[ret] = 0;
-	out = ft_strjoin(out, str);
+	out = n_strjoin(out, str);
 	while (str[0])
 	{
 		ret = read(fd, str, 10);
 		if (!ret)
 			return (out);
 		str[ret] = 0;
-		out = ft_strjoin(out, str);
+		out = n_strjoin(out, str);
 	}
 	return (out);
 
@@ -47,26 +71,27 @@ int	verif_cub(char *str)
 {
 	int		i;
 	int		end;
-	char	*ber;
+	char	*cub;
 
-	ber = ".ber";
+	cub = ".cub";
 	i = 0;
 	if (ft_strlen(str) < 4)
 		return (0);
 	end = ft_strlen(str) - 4;
 	if (str[end - 1] == '/' || str[0] == '.')
 		return (0);
-	while (str[end + i] && ber[i])
+	while (str[end + i] && cub[i])
 	{
-		if (str[end + i] != ber[i])
+		if (str[end + i] != cub[i])
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-char	*open_map(int ac, char **av)
+char	**open_map(int ac, char **av)
 {
+	char	**cubed;
 	char	*cub;
 
 	if (ac != 2 )
@@ -85,5 +110,7 @@ char	*open_map(int ac, char **av)
 		printf("Error\nCan not open the cub");
 		return (0);
 	}
-	return (cub);
+	cubed = cub_to_cubed(cub);
+	free(cub);
+	return (cubed);
 }

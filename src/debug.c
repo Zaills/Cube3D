@@ -1,4 +1,4 @@
-#include "headers/parsing.h"
+#include "../headers/parsing.h"
 
 void d_print_parsedata(t_parse *data)
 {
