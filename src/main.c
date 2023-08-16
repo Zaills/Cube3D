@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 18:36:35 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/16 18:43:00 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	data.file = open_map(ac, av);
 	if (!data.file)
 		return (0);
-	if (init_identifier(&data) || verif_beg_struct(&data))
+	if (init_identifier(&data) == 1|| verif_beg_struct(&data))
 	{
 		free_parsedata(&data);
 		return (1);

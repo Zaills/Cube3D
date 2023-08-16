@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 18:38:19 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/16 18:42:30 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	init_identifier(t_parse *data)
 			!= ft_strlen(temp))
 			return (output_error(ORDER_SYMB));
 	}
+	d_print_parsedata(data);
 	return (-1);
 }
 
