@@ -61,7 +61,9 @@ char *open_file(char *file)
 		if (!ret)
 			return (out);
 		str[ret] = 0;
+		//out = ft_store_extra(out, str, ret); test
 		out = n_strjoin(out, str);
+		printf("out=%s\n",out);
 	}
 	return (out);
 

@@ -7,6 +7,7 @@ FILES= src/main.c\
 		src/utils.c\
 	src/map/open_file.c \
 	src/map/cub_to_cubed.c \
+	src/data_init.c\
 	src/debug.c\
 
 
