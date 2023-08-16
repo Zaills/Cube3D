@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 16:51:50 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/16 18:38:19 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,53 @@ static int	check_identifier(char *str, t_parse *data, char *c)
 	return (1);
 }
 
-void	init_identifier(t_parse *data)
+static int	check_entry(t_parse *data)
+{
+	int	entry;
+
+	entry = 0;
+	if (data->ceil != NULL)
+		entry++;
+	if (data->floor != NULL)
+		entry++;
+	if (data->ea_text != NULL)
+		entry++;
+	if (data->no_text != NULL)
+		entry++;
+	if (data->so_text != NULL)
+		entry++;
+	if (data->we_text != NULL)
+		entry++;
+	return (entry);
+}
+
+int	init_identifier(t_parse *data)
 {
 	int		j;
 	char	*temp;
 
 	temp = NULL;
-	j = 0;
-	while (data->map[j])
+	j = -1;
+	while (data->file[++j] && check_entry(data) != 6)
 	{
-		temp = skip_space(data->map[j]);
+		temp = skip_space(data->file[j]);
 		if (ft_strncmp(temp, "NO", 2) == 0)
 			data->no_text = ft_strtrim(&temp[2], " \t");
-		if (ft_strncmp(temp, "SO", 2) == 0)
+		else if (ft_strncmp(temp, "SO", 2) == 0)
 			data->so_text = ft_strtrim(&temp[2], " \t");
-		if (ft_strncmp(temp, "WE", 2) == 0)
+		else if (ft_strncmp(temp, "WE", 2) == 0)
 			data->we_text = ft_strtrim(&temp[2], " \t");
-		if (ft_strncmp(temp, "EA", 2) == 0)
+		else if (ft_strncmp(temp, "EA", 2) == 0)
 			data->ea_text = ft_strtrim(&temp[2], " \t");
-		if (check_identifier(temp, data, "F") == 1)
+		else if (check_identifier(temp, data, "F") == 1)
 			data->floor = ft_strtrim(&temp[1], " \t");
-		if (check_identifier(temp, data, "C") == 1)
+		else if (check_identifier(temp, data, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
-		j++;
+		else if (count_char(temp, ' ') + count_char(temp, '\t')
+			!= ft_strlen(temp))
+			return (output_error(ORDER_SYMB));
 	}
-	d_print_parsedata(data);
+	return (-1);
 }
 
 void	free_parsedata(t_parse *data)
@@ -84,6 +106,6 @@ void	free_parsedata(t_parse *data)
 		free(data->so_text);
 	if (data->we_text != NULL)
 		free(data->we_text);
-	if (data->map != NULL)
-		free_cubed(data->map);
+	if (data->file != NULL)
+		free_cubed(data->file);
 }

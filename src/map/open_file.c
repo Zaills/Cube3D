@@ -39,7 +39,7 @@ char	*n_strjoin(char *str, char *join)
 	return (out);
 }
 
-char *open_file(char *file)
+char	*open_file(char *file)
 {
 	int		fd;
 	int		ret;
@@ -61,12 +61,9 @@ char *open_file(char *file)
 		if (!ret)
 			return (out);
 		str[ret] = 0;
-		//out = ft_store_extra(out, str, ret); test
 		out = n_strjoin(out, str);
-		printf("out=%s\n",out);
 	}
 	return (out);
-
 }
 
 int	verif_cub(char *str)
@@ -96,7 +93,7 @@ char	**open_map(int ac, char **av)
 	char	**cubed;
 	char	*cub;
 
-	if (ac != 2 )
+	if (ac != 2)
 	{
 		printf("Error\nPut only the map\n");
 		return (0);

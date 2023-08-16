@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_to_cubed.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:12:02 by marvin            #+#    #+#             */
-/*   Updated: 2023/08/11 16:12:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/16 18:39:21 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**cub_to_cubed(char *cub)
 	i = 0;
 	j = 0;
 	num = get_num_line(cub) + 1;
-	out = ft_calloc(sizeof(char*), num + 1);
+	out = ft_calloc(sizeof(char *), num + 1);
 	if (!out)
 		return (0);
 	while (cub[i])
@@ -77,7 +77,7 @@ char	**cub_to_cubed(char *cub)
 
 void	free_cubed(char **cubed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cubed[i])

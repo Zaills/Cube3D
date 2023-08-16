@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+         #
+#    By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 14:02:56 by nmorandi          #+#    #+#              #
-#    Updated: 2022/10/18 17:01:11 by nmorandi         ###   ########.fr        #
+#    Updated: 2023/08/16 17:30:31 by gouz             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ BONUS=ft_lstsize.c		\
 	ft_lstclear.c 		\
 	ft_lstadd_front.c	\
 	ft_lstadd_back.c 	\
+
 
 OBJ=$(MANDATORY:.c=.o)
 

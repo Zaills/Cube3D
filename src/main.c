@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 16:42:38 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/16 18:36:35 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,45 @@ static void	init_parse(t_parse *data)
 	data->no_text = NULL;
 	data->so_text = NULL;
 	data->we_text = NULL;
-	data->map = NULL;
+	data->file = NULL;
 }
 
-static int	check_value_color(t_parse *data)
+static int	check_color_value(char *str_rgb)
 {
-	int value[3];
-	value[0] = ft_atoi(data->ceil);
-	printf("missing last value , data=%s\n",&ft_strrchr(data->ceil, ',')[2]);
-	value[1] = ft_atoi(&ft_strchr(data->ceil, ',')[1]);
-	value[2] = ft_atoi(&ft_strrchr(data->ceil, ',')[1]);
-	printf("value=%d %d %d\n",value[0],value[1],value[2]);
+	int	value[3];
+	int	i;
+
+	i = 0;
+	if (str_rgb[0] == ',' || ft_isdigit(ft_strrchr(str_rgb, ',')[1]) == 0
+		|| count_char(str_rgb, ',') != 2)
+		return (-1);
+	value[0] = ft_atoi(str_rgb);
+	value[1] = ft_atoi(&ft_strchr(str_rgb, ',')[1]);
+	value[2] = ft_atoi(&ft_strrchr(str_rgb, ',')[1]);
+	while (i < 3)
+	{
+		if (value[i] > 255 || value[i] < 0)
+			return (-1);
+		i++;
+	}
 	return (1);
 }
 
 int	verif_beg_struct(t_parse *data)
 {
-	if (data->ceil == NULL || check_value_color(data) == -1)
+	if (data->ceil == NULL || check_color_value(data->ceil) == -1)
 		return (output_error(CEIL_ERR));
-	if (data->floor == NULL || check_value_color(data) == -1)
+	if (data->floor == NULL || check_color_value(data->floor) == -1)
 		return (output_error(FLOOR_ERR));
 	if (data->ea_text == NULL)
-		return 1;
+		return (1);
 	if (data->no_text == NULL)
-		return 1;
+		return (1);
 	if (data->so_text == NULL)
-		return 1;
+		return (1);
 	if (data->we_text == NULL)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -56,11 +66,10 @@ int	main(int ac, char **av)
 	t_parse	data;
 
 	init_parse(&data);
-	data.map = open_map(ac, av);
-	if (!data.map)
+	data.file = open_map(ac, av);
+	if (!data.file)
 		return (0);
-	init_identifier(&data);
-	if (verif_beg_struct(&data))
+	if (init_identifier(&data) || verif_beg_struct(&data))
 	{
 		free_parsedata(&data);
 		return (1);
