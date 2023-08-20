@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 18:42:30 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/20 04:22:10 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,10 @@ int	init_identifier(t_parse *data)
 			data->floor = ft_strtrim(&temp[1], " \t");
 		else if (check_identifier(temp, data, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
-		else if (count_char(temp, ' ') + count_char(temp, '\t')
-			!= ft_strlen(temp))
+		else if (count_c(temp, ' ') + count_c(temp, '\t') != ft_strlen(temp))
 			return (output_error(ORDER_SYMB));
 	}
-	d_print_parsedata(data);
+	get_map(data, j);
 	return (-1);
 }
 

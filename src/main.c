@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/16 18:43:00 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/20 04:24:19 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	init_parse(t_parse *data)
 	data->so_text = NULL;
 	data->we_text = NULL;
 	data->file = NULL;
+	data->map = NULL;
 }
 
 static int	check_color_value(char *str_rgb)
@@ -30,7 +31,7 @@ static int	check_color_value(char *str_rgb)
 
 	i = 0;
 	if (str_rgb[0] == ',' || ft_isdigit(ft_strrchr(str_rgb, ',')[1]) == 0
-		|| count_char(str_rgb, ',') != 2)
+		|| count_c(str_rgb, ',') != 2)
 		return (-1);
 	value[0] = ft_atoi(str_rgb);
 	value[1] = ft_atoi(&ft_strchr(str_rgb, ',')[1]);
@@ -69,11 +70,17 @@ int	main(int ac, char **av)
 	data.file = open_map(ac, av);
 	if (!data.file)
 		return (0);
-	if (init_identifier(&data) == 1|| verif_beg_struct(&data))
+	if (init_identifier(&data) == 1 || verif_beg_struct(&data))
 	{
 		free_parsedata(&data);
 		return (1);
 	}
+	if (check_map(&data) == -1)
+	{
+		free_parsedata(&data);
+		return (output_error(MAP_ERR));
+	}
+	d_print_parsedata(&data);
 	printf("Good\n");
 	free_parsedata(&data);
 }
