@@ -6,11 +6,11 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/21 18:28:00 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:31:32 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/parsing.h"
+#include "parsing.h"
 
 static void	init_parse(t_parse *data)
 {

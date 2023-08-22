@@ -6,11 +6,11 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/22 15:48:11 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:44:26 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
+#include "parsing.h"
 
 void	get_map(t_parse *data, int i)
 {

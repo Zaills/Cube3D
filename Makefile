@@ -1,7 +1,8 @@
 NAME=cubed
 CC=cc
-CCFLAGS=-Wall -Werror -Wextra -g
+CCFLAGS=-Wall -Werror -Wextra
 LIBFT=-L ./libft -lft
+INCLUDE=-Iheaders/
 
 FILES= src/main.c\
 		src/utils.c\
@@ -12,17 +13,16 @@ FILES= src/main.c\
 	src/data_init.c\
 	src/debug.c\
 
-
 OBJ=$(FILES:.c=.o)
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC)  -c $(CFLAGS) $(INCLUDE) -o $@ $<
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(CCFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(CCFLAGS) $(OBJ) $(INCLUDE) $(LIBFT) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ../libft

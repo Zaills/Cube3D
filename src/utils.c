@@ -6,11 +6,11 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:19:00 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/21 18:20:52 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:44:36 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/parsing.h"
+#include "parsing.h"
 
 int	output_error(int code)
 {

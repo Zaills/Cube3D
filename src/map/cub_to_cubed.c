@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub_to_cubed.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:12:02 by marvin            #+#    #+#             */
-/*   Updated: 2023/08/16 18:39:21 by gouz             ###   ########.fr       */
+/*   Updated: 2023/08/22 16:44:54 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../../headers/parsing.h"
+#include "parsing.h"
 
 int	get_num_line(char *cub)
 {

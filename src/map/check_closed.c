@@ -6,11 +6,11 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/08/22 16:22:35 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:44:13 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
+#include "parsing.h"
 
 static char** copy_map(char **map)
 {

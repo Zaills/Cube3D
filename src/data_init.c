@@ -6,11 +6,11 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/21 19:17:20 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:44:45 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/parsing.h"
+#include "parsing.h"
 
 static char	*skip_space(char *str)
 {
