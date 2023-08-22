@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/22 15:24:51 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:48:11 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,41 +48,6 @@ static int	check_line(char *line, int check_spawn)
 	return (1);
 }
 
-static char** copy_map(char **map)
-{
-	char **copy;
-
-	int i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	copy = malloc(sizeof(char *) * i);
-	if (!copy)
-		return (NULL);
-	i = -1;
-	while (map[++i])
-		copy[i] = ft_strdup(map[i]);
-	return (copy);
-}
-
-static int	check_closed(t_parse *data)
-{
-	int	i;
-	char **map_edit;
-
-	map_edit = copy_map(data->map);
-	if (!map_edit)
-		return (-1);
-	i = 0;
-	while (map_edit[i])
-	{
-		printf("copy[i] =%s\n", map_edit[i]); // checker si entourer de wall, si oui --> devenir 2 (donc est un 0 et est entourer de wall) TODO
-		i++;
-	}
-	return (1);
-}
-
 int	check_map(t_parse *data) // wrong symbol + multiple spawn fait
 {
 	int			i;
@@ -101,7 +66,6 @@ int	check_map(t_parse *data) // wrong symbol + multiple spawn fait
 	{
 		printf("map isn't closed\n");
 	}
-
 	printf("|| END OF MAP (everything is good) ||\n");
 	return (1);
 }

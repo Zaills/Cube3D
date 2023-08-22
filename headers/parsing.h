@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/21 18:20:46 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:44:58 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		init_identifier(t_parse *data);
 void	free_parsedata(t_parse *data);
 void	get_map(t_parse *data, int i);
 int		check_map(t_parse *data);
-
+int		check_closed(t_parse *data);
 //utils
 
 int		output_error(int code);
