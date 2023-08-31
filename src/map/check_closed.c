@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/08/22 16:44:13 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:21:33 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ static char** copy_map(char **map)
 
 static int	is_surrounded(char **map, int i, int j)// take 0 and check if surrounded
 {
+	int top=0;
+	int	tempi;
+	return (1);
+	tempi = i;
+	while (i >= 0)
+	{
+		printf("checking if %c is 1, i is %d\n", map[i][j], i); // need check avec la len des lignes pour pas target du vide
+		if (map[i][j] == '1' || map[i][j] == '2')
+			top = 1;
+		i--;
+	}
+	if (top == 0)
+		return (-1);
+	map[tempi][j] = '1';
 	return (1);
 }
 
@@ -47,10 +61,11 @@ int	check_closed(t_parse *data)
 	i = 0;
 	while (map_edit[i])
 	{
-		while (map_edit[j])
+		while (map_edit[i][j])
 		{
-			if (is_surrounded(map_edit, i , j) == -1)
-				return (-1); // need free copy_map
+			if (map_edit[i][j] == '0')
+				if (is_surrounded(map_edit, i , j) == -1)
+					return (-1); // need free copy_map
 			j++;
 		}
 		printf("copy[i] =%s\n", map_edit[i]); // checker si entourer de wall, si oui --> devenir 2 (donc est un 0 et est entourer de wall) TODO

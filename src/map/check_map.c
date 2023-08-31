@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/22 16:44:26 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:04:48 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	get_map(t_parse *data, int i)
 {
 	while (count_c(data->file[i], ' ') + count_c(data->file[i], '\t')
-		== ft_strlen(data->file[i]))
+		== (int)ft_strlen(data->file[i]))
 		i++;
 	data->map = &data->file[i];
 }
@@ -35,7 +35,7 @@ static int	check_line(char *line, int check_spawn)
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && line[i] != 'N'
 			&& line[i] != 'W' && line[i] != 'S' && line[i] != 'E')
 		{
-			printf("INVALID LINE cause : %c\n", line[i]);
+			printf("Invalid symbol : %c\n", line[i]);
 			return (-1);
 		}
 		if (line[i] == 'N' || line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
@@ -43,12 +43,11 @@ static int	check_line(char *line, int check_spawn)
 		if (spawn > 1)
 			return (-1);
 		i++;
-		printf("spawn=%d\n",spawn);
 	}
 	return (1);
 }
 
-int	check_map(t_parse *data) // wrong symbol + multiple spawn fait
+int	check_map(t_parse *data)
 {
 	int			i;
 	i = 0;
@@ -56,15 +55,16 @@ int	check_map(t_parse *data) // wrong symbol + multiple spawn fait
 	while (data->map[i])
 	{
 		printf("%s\n",data->map[i]);
-		if (check_line(data->map[i], 0) == -1)
+		if (check_line(data->map[i], 0) == -1) // symbol checked here
 			return (-1);
 		i++;
 	}
-	if (check_line(data->map[i-1], 1) == -1)
+	if (check_line(data->map[i-1], 1) == -1) // I check for spawn here
 		return (-1);
 	if (check_closed(data) == -1) //need check spawn valid ( pas hors map) TODO
 	{
 		printf("map isn't closed\n");
+		return (-1);
 	}
 	printf("|| END OF MAP (everything is good) ||\n");
 	return (1);

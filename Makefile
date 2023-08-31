@@ -1,6 +1,6 @@
 NAME=cubed
 CC=cc
-CCFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
 INCLUDE=-Iheaders/
 
@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(CCFLAGS) $(OBJ) $(INCLUDE) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ) $(INCLUDE) $(LIBFT) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ../libft

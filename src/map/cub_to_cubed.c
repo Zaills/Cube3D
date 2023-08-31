@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:12:02 by marvin            #+#    #+#             */
-/*   Updated: 2023/08/22 16:44:54 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:05:21 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	**cub_to_cubed(char *cub)
 {
 	char	**out;
 	int		i;
-	int		pi;
 	int		j;
 	int		num;
 

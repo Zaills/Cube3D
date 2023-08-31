@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/22 16:44:45 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:06:08 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*skip_space(char *str)
 	return (&str[i]);
 }
 
-static int	check_identifier(char *str, t_parse *data, char *c)
+static int	check_identifier(char *str, char *c)
 {
 	char	*temp;
 	int		i;
@@ -81,11 +81,11 @@ int	init_identifier(t_parse *data)
 			data->we_text = ft_strtrim(&temp[2], " \t");
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 			data->ea_text = ft_strtrim(&temp[2], " \t");
-		else if (check_identifier(temp, data, "F") == 1)
+		else if (check_identifier(temp, "F") == 1)
 			data->floor = ft_strtrim(&temp[1], " \t");
-		else if (check_identifier(temp, data, "C") == 1)
+		else if (check_identifier(temp, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
-		else if (count_c(temp, ' ') + count_c(temp, '\t') != ft_strlen(temp))
+		else if (count_c(temp, ' ') + count_c(temp, '\t') != (int)ft_strlen(temp))
 			return (output_error(ORDER_SYMB));
 	}
 	get_map(data, j);
