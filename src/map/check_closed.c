@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/08/31 14:21:33 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:21:57 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	is_surrounded(char **map, int i, int j)// take 0 and check if surroun
 {
 	int top=0;
 	int	tempi;
-	return (1);
 	tempi = i;
 	while (i >= 0)
 	{
@@ -54,6 +53,7 @@ int	check_closed(t_parse *data)
 	int		j;
 	char	**map_edit;
 
+	return (1);
 	map_edit = copy_map(data->map);
 	if (!map_edit)
 		return (-1);
