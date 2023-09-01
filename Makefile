@@ -16,13 +16,13 @@ FILES= src/main.c\
 OBJ=$(FILES:.c=.o)
 
 %.o : %.c
-	$(CC)  -c $(CFLAGS) $(INCLUDE) -o $@ $<
+	$(CC) -c $(CFLAGS) $(INCLUDE) -o $@ $<
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(OBJ) $(INCLUDE) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ../libft
