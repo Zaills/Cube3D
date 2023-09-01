@@ -11,6 +11,7 @@ FILES= src/main.c\
 	src/map/check_map.c\
 	src/map/check_closed.c \
 	src/map/cub_to_cubed.c \
+	src/render/render.c\
 	src/data_init.c\
 	src/debug.c\
 
