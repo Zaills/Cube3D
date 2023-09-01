@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/31 13:56:12 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:49:30 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	verif_beg_struct(t_parse *data)
 	return (0);
 }
 
+#include "../MLX42/include/MLX42/MLX42.h"
+
 int	main(int ac, char **av)
 {
 	t_parse	data;
@@ -83,4 +85,9 @@ int	main(int ac, char **av)
 	d_print_parsedata(&data);
 	printf("Good\n");
 	free_parsedata(&data);
+	mlx_t* mlx = mlx_init(100, 100, "Test", true);
+	if (!mlx)
+		printf("FF\n");
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }

@@ -2,6 +2,7 @@ NAME=cubed
 CC=cc
 CFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
+MLX42=MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 INCLUDE=-Iheaders/
 
 FILES= src/main.c\
@@ -22,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ../libft
