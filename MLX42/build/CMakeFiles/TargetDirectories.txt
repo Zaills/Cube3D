@@ -1,7 +1,0 @@
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/mlx42.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/edit_cache.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/rebuild_cache.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/list_install_components.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/install.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/install/local.dir
-/home/gouz/42/Cube3D/MLX42/test/CMakeFiles/install/strip.dir

@@ -23,6 +23,8 @@ OBJ=$(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	cd MLX42 && cmake -B build
+	cd MLX42 && cmake --build build -j4
 	$(MAKE) -C ../libft
 	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
@@ -31,9 +33,13 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
+	cd MLX42 && cmake -E remove_directory build
 	$(MAKE) fclean -C ../libft
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all re clean fclean
+rebuild_mlx:
+	cd MLX42 && cmake -B build
+
+.PHONY: all re clean fclean rebuild_mlx
