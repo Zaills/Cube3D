@@ -25,7 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	cd MLX42 && cmake -B build
 	cd MLX42 && cmake --build build -j4
-	$(MAKE) -C ../libft
+	$(MAKE) -C ./libft
 	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
 clean:
