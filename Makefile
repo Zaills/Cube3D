@@ -12,6 +12,8 @@ FILES= src/main.c\
 	src/map/check_closed.c \
 	src/map/cub_to_cubed.c \
 	src/render/render.c\
+	src/render/render_utils.c\
+	src/render/sky_floor.c\
 	src/data_init.c\
 	src/debug.c\
 

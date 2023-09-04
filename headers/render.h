@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:59:35 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/04 15:22:30 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RENDER_H
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "parse_struct.h"
+# include "../../libft/libft.h"
 #define HEIGHT 1080
 #define WIDTH 1920
 

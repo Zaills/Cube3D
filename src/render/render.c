@@ -6,11 +6,12 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 15:06:04 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/04 15:21:03 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "stdio.h"
 
 int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with render struct)
 {
@@ -33,7 +34,7 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 
 void	render(t_parse *data)
 {
-	t_render render; //used to store data for rendering (like spawn , texture etc...)
+	//t_render render; //used to store data for rendering (like spawn , texture etc...)
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render_sky_floor(mlx,data);
 	init_texture(data, mlx);
