@@ -45,9 +45,11 @@ void	minimap(t_parse *data, mlx_t* mlx)
 	{
 		while (data->map[y][x])
 		{
-
 			if (data->map[y][x] == '1')
 				put_big_pixel(img, x * 10, y * 10, 0x000000FF);
+			else if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
+				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
+				put_big_pixel(img, x * 10, y * 10, 0xFF0000FF);
 			else
 				put_big_pixel(img, x * 10, y * 10, 0xFFFFFFFF);
 			x++;
