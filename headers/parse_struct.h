@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   parse_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:59:35 by gouz             ###   ########.fr       */
+/*   Created: 2023/09/04 14:56:48 by gouz              #+#    #+#             */
+/*   Updated: 2023/09/04 14:58:32 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "parse_struct.h"
-#define HEIGHT 1080
-#define WIDTH 1920
+#ifndef STRUCT_H
+# define STRUCT_H
 
-typedef struct render
+typedef struct parsing
 {
-	int	spawn_x;
-	int	spawn_y;
-}		t_render;
+	char	*no_text;
+	char	*so_text;
+	char	*we_text;
+	char	*ea_text;
+	char	*floor;
+	char	*ceil;
+	char	**file;
+	char	**map;
+}		t_parse;
 
-void	render();
-void	render_sky_floor(mlx_t* mlx, t_parse *data);
-
-//UTILS
-int		get_rgba(char *type);
+void	free_parsedata(t_parse *data);
 
 #endif

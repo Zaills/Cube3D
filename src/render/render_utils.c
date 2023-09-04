@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:59:35 by gouz             ###   ########.fr       */
+/*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
+/*   Updated: 2023/09/04 14:59:07 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "parse_struct.h"
-#define HEIGHT 1080
-#define WIDTH 1920
-
-typedef struct render
+int	get_rgba(char *type)
 {
-	int	spawn_x;
-	int	spawn_y;
-}		t_render;
+	char	**temp;
+	int		r;
+	int		g;
+	int		b;
 
-void	render();
-void	render_sky_floor(mlx_t* mlx, t_parse *data);
-
-//UTILS
-int		get_rgba(char *type);
-
-#endif
+	temp = ft_split(type, ',');
+	r = ft_atoi(temp[0]);
+	g = ft_atoi(temp[1]);
+	b = ft_atoi(temp[2]);
+	return (r << 24 | g << 16 | b << 8 | 255);
+}
