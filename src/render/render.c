@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 15:21:03 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/04 18:12:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with render struct)
 {
+	mlx_texture_t* png;
+	mlx_image_t* img;
+
 	printf("texture = %s\n", data->no_text);
-	mlx_texture_t* png = mlx_load_png(data->no_text);
+	png = mlx_load_png(data->no_text);
 	if (!png)
 	{
 		printf ("png failed\n");
 		return 1;
 	}
-	mlx_image_t* img = mlx_texture_to_image(mlx, png);
+	img = mlx_texture_to_image(mlx, png);
 	if (!img)
 	{
 		printf("img failed\n");
@@ -34,8 +37,10 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 
 void	render(t_parse *data)
 {
+	mlx_t* mlx;
+
 	//t_render render; //used to store data for rendering (like spawn , texture etc...)
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render_sky_floor(mlx,data);
 	init_texture(data, mlx);
 	mlx_loop(mlx);
