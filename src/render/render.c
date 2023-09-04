@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 18:12:53 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/04 19:02:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 		printf("img failed\n");
 		return (1);
 	}
-	//mlx_image_to_window(mlx, img, 0, 0); uncomment to display the current image
+	//mlx_image_to_window(mlx, img, 0, 0); //uncomment to display the current image
 	return 1;
 }
 
@@ -43,6 +43,7 @@ void	render(t_parse *data)
 	mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render_sky_floor(mlx,data);
 	init_texture(data, mlx);
+	minimap(data, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 }

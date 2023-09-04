@@ -14,6 +14,7 @@ FILES= src/main.c\
 	src/render/render.c\
 	src/render/render_utils.c\
 	src/render/sky_floor.c\
+	src/render/minimap/minimap.c\
 	src/data_init.c\
 	src/debug.c\
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 15:22:30 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/04 18:32:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,19 @@ typedef struct render
 {
 	int	spawn_x;
 	int	spawn_y;
+
 }		t_render;
+
+typedef struct s_image {
+	void	*so;
+	void	*no;
+	void	*we;
+	void	*ea;
+}	t_image;
 
 void	render();
 void	render_sky_floor(mlx_t* mlx, t_parse *data);
+void	minimap(t_parse *data, mlx_t* mlx);
 
 //UTILS
 int		get_rgba(char *type);
