@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/05 13:37:30 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/05 20:04:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_image {
 void	render();
 void	render_sky_floor(mlx_t* mlx, t_parse *data);
 void	minimap(t_parse *data, mlx_t* mlx);
+void	render_player(t_render *render, mlx_t* mlx);
+void	wich_player(t_render* render, mlx_image_t* img);
 void	init_render(t_render *render, t_parse *data);
 void	get_player_pos(char **map, t_render *render);
 void	raycast(t_render *render);
