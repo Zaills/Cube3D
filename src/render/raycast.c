@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/05 13:36:57 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/05 13:42:56 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void	raycast(t_render *render) //NEED DDA and norm
 {
-	int		i;
+	(void) render;
+	return;
+/* 	int		i;
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
@@ -26,14 +28,14 @@ void	raycast(t_render *render) //NEED DDA and norm
 	double sideDistX;
 	double sideDistY;
 
-	double perpWallDist;
+	//double perpWallDist;
 
 	int stepX;
 	int stepY;
 
-	int hit = 0;
-	int side;
-
+	//int hit;
+	//int side;
+	//hit = 0;
 	double deltaDistX;
 	double deltaDistY;
 	i = 0;
@@ -47,10 +49,8 @@ void	raycast(t_render *render) //NEED DDA and norm
 		mapX = (int)render->spawn_x;
 		mapY = (int)render->spawn_y;
 
-		if (rayDirX == 0)
-
-		deltaDistX = (rayDirX == 0) ? 1e30 : abs(1 / rayDirX);
-		deltaDistY = (rayDirY == 0) ? 1e30 : abs(1 / rayDirY);
+		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
+		deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
 
 		if(rayDirX < 0)
 		{
@@ -72,5 +72,5 @@ void	raycast(t_render *render) //NEED DDA and norm
 			stepY = 1;
 			sideDistY = (mapY + 1.0 - render->spawn_y) * deltaDistY;
 		}
-	}
+	}*/
 }
