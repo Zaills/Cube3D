@@ -6,9 +6,10 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 17:04:38 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/06 17:27:40 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "render.h"
 #include "stdio.h"
@@ -43,14 +44,42 @@ void	draw_ver_line(int start, int end, t_render *render, int x)
 	}
 }
 
+void	dkey(mlx_key_data_t key, void* param)
+{
+	mlx_t* mlx;
+
+	mlx = param;
+	if(key.key == MLX_KEY_UP && key.action == MLX_PRESS)
+		printf("/\\\n");
+	if(key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
+		printf("\\/\n");
+	if(key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
+		printf("<-\n");
+	if(key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
+		printf("->\n");
+	if (key.key == MLX_KEY_W && key.action == MLX_PRESS)
+		printf("W\n");
+	if (key.key == MLX_KEY_A && key.action == MLX_PRESS)
+		printf("A\n");
+	if (key.key == MLX_KEY_S && key.action == MLX_PRESS)
+		printf("S\n");
+	if (key.key == MLX_KEY_D && key.action == MLX_PRESS)
+		printf("D\n");
+	if(key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
+		mlx_close_window(mlx);
+}
+
 void	render(t_parse *data)
 {
 	t_render render;
 
 	init_render(&render, data);
 	render_sky_floor(&render,data);
-	//init_texture(data, render.mlx); // check error
+	init_texture(data, render.mlx); // check error
+	printf("dir x: %f\ndir y: %f\n", render.dirX, render.dirY);
 	minimap(data, render.mlx);
+	render_player(&render, render.mlx);
+	mlx_key_hook(render.mlx, &dkey, render.mlx);
 	raycast(&render, data->map);
 	mlx_loop(render.mlx);
 	mlx_terminate(render.mlx);

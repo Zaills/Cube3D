@@ -16,6 +16,7 @@ FILES= src/main.c\
 	src/render/sky_floor.c\
 	src/render/raycast.c\
 	src/render/minimap/minimap.c\
+	src/render/minimap/render_player.c\
 	src/data_init.c\
 	src/debug.c\
 
