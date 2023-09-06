@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/05 13:38:09 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/06 17:04:38 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,28 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 		printf("img failed\n");
 		return (-1);
 	}
-	mlx_image_to_window(mlx, img, 0, 0); //uncomment to display the current image
+	mlx_image_to_window(mlx, img, 0, 0);
 	return 1;
+}
+
+void	draw_ver_line(int start, int end, t_render *render, int x)
+{
+	while (start < end)
+	{
+		mlx_put_pixel(render->view, x, start, 0xFF0000FF);
+		start++;
+	}
 }
 
 void	render(t_parse *data)
 {
-	mlx_t*	mlx;
-
 	t_render render;
-	mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
-	render_sky_floor(mlx,data);
-	init_texture(data, mlx); // check error
+
 	init_render(&render, data);
-	minimap(data, mlx);
-	raycast(&render);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	render_sky_floor(&render,data);
+	//init_texture(data, render.mlx); // check error
+	minimap(data, render.mlx);
+	raycast(&render, data->map);
+	mlx_loop(render.mlx);
+	mlx_terminate(render.mlx);
 }
