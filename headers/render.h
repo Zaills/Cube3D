@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 18:35:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/06 19:39:37 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,23 @@ typedef struct render
 {
 	mlx_t*			mlx;
 	mlx_image_t*	view;
+	double			rayDirX;
+	double			rayDirY;
 	double			spawn_x;
 	double			spawn_y;
 	double			dirX;
 	double			dirY;
 	double			planeX;
 	double			planeY;
+	double			deltaDistX;
+	double			deltaDistY;
+	double			sideDistX;
+	double			sideDistY;
+	int				stepX;
+	int				stepY;
+	int				mapX;
+	int				mapY;
+	int				side;
 }		t_render;
 
 typedef struct move

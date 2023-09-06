@@ -3,109 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 17:57:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/06 19:55:52 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "math.h"
 
-void	raycast(t_render *render, char **map) //NEED DDA and norm
+static void	draw_wall(double wall_dist, int i, t_render *render)
+{
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+
+	line_height = (int)(HEIGHT / wall_dist);
+	draw_start = -line_height / 2 + HEIGHT / 2;
+	draw_end = line_height / 2 + HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end >= HEIGHT)
+		draw_end = HEIGHT - 1;
+	draw_ver_line(draw_start, draw_end, render, i);
+}
+
+static void	update_var(t_render *render, int i)
+{
+	double	camera_x;
+
+	camera_x = 2 * i / (double)WIDTH - 1;
+	render->rayDirX = render->dirX + render->planeX * camera_x;
+	render->rayDirY = render->dirY + render->planeY * camera_x;
+	render->mapX = (int)render->spawn_x;
+	render->mapY = (int)render->spawn_y;
+	if (render->rayDirX == 0)
+		render->deltaDistX = 1e30;
+	else
+		render->deltaDistX = fabs(1 / render->rayDirX);
+	if (render->rayDirY == 0)
+		render->deltaDistY = 1e30;
+	else
+		render->deltaDistY = fabs(1 / render->rayDirY);
+}
+
+static void	digital_differential_analyzer(t_render *render, char **map)
+{
+	while (1)
+	{
+		if (render->sideDistX < render->sideDistY)
+		{
+			render->sideDistX += render->deltaDistX;
+			render->mapX += render->stepX;
+			render->side = 0;
+		}
+		else
+		{
+			render->sideDistY += render->deltaDistY;
+			render->mapY += render->stepY;
+			render->side = 1;
+		}
+		if (map[render->mapX][render->mapY] == '1')
+			return ;
+	}
+}
+
+static void	step_and_dist(t_render *r)
+{
+	if (r->rayDirX < 0)
+	{
+		r->stepX = -1;
+		r->sideDistX = (r->spawn_x - r->mapX) * r->deltaDistX;
+	}
+	else
+	{
+		r->stepX = 1;
+		r->sideDistX = (r->mapX + 1.0 - r->spawn_x) * r->deltaDistX;
+	}
+	if (r->rayDirY < 0)
+	{
+		r->stepY = -1;
+		r->sideDistY = (r->spawn_y - r->mapY) * r->deltaDistY;
+	}
+	else
+	{
+		r->stepY = 1;
+		r->sideDistY = (r->mapY + 1.0 - r->spawn_y) * r->deltaDistY;
+	}
+}
+
+void	raycast(t_render *render, char **map)
 {
 	int		i;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	double	wall_dist;
 
-	int mapX;
-	int mapY;
-
-	double sideDistX;
-	double sideDistY;
-
-	double perpWallDist;
-
-	int stepX;
-	int stepY;
-
-	int hit;
-	int side;
-	hit = 0;
-	double deltaDistX;
-	double deltaDistY;
-	i = 0;
-	while (i < WIDTH) // envoie un rayon par chaque ligne vertical de l ecran
+	i = -1;
+	while (++i < WIDTH)
 	{
-		hit = 0;
-		cameraX = 2 * i / (double)WIDTH - 1;
-		rayDirX = render->dirX + render->planeX * cameraX;
-		rayDirY = render->dirY + render->planeY * cameraX;
-
-		mapX = (int)render->spawn_x;
-		mapY = (int)render->spawn_y;
-
-		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX); // need to be normed
-		deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);// idk how to do
-
-		if(rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (render->spawn_x - mapX) * deltaDistX;
-		}
+		update_var(render, i);
+		step_and_dist(render);
+		digital_differential_analyzer(render, map);
+		if (render->side == 0)
+			wall_dist = (render->sideDistX - render->deltaDistX);
 		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - render->spawn_x) * deltaDistX;
-		}
-		if(rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (render->spawn_y - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - render->spawn_y) * deltaDistY;
-		}
-		while(hit == 0) // trace le chemin du rayon et check si un mur
-		{
-		//jump to next map square, either in x-direction, or in y-direction
-			if(sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			//Check if ray has hit a wall
-			if(map[mapX][mapY] == '1')
-				hit = 1;
-		}
-		if(side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
-		else
-			perpWallDist = (sideDistY - deltaDistY);
-
-		//Calculate height of line to draw on screen
-		int lineHeight;
-		lineHeight = (int)(HEIGHT / perpWallDist);
-
-		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + HEIGHT / 2;
-		if(drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + HEIGHT / 2;
-		if(drawEnd >= HEIGHT)
-			drawEnd = HEIGHT - 1;
-		draw_ver_line(drawStart, drawEnd, render, i);
-		i++;
+			wall_dist = (render->sideDistY - render->deltaDistY);
+		draw_wall(wall_dist, i, render);
 	}
 }
