@@ -17,6 +17,7 @@ FILES= src/main.c\
 	src/render/raycast.c\
 	src/render/minimap/minimap.c\
 	src/render/minimap/render_player.c\
+	src/render/movement.c\
 	src/data_init.c\
 	src/debug.c\
 
