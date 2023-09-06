@@ -6,9 +6,10 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/05 20:03:46 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/06 18:14:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "render.h"
 #include "parse_struct.h"
@@ -53,11 +54,8 @@ void	get_player_pos(char **map, t_render *render)
 
 void	init_render(t_render *render, t_parse *data)
 {
-	static bool init = false;
-
-	if (init == true)
-		return ;
-	init = true;
+	render->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
+	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
 	get_player_pos(data->map, render);
 	render->dirX = -1; // changer selon N S E W (direction de la vue fps)
 	render->dirY = 0;

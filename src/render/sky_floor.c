@@ -6,11 +6,12 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:28 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:58:58 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/06 16:29:14 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "stdio.h"
 
 static void	draw_sky(mlx_image_t *img, char *ceil)
 {
@@ -36,6 +37,7 @@ static void	draw_floor(mlx_image_t *img, char *floor)
 	int	rgba;
 
 	rgba = get_rgba(floor);
+	printf("rgba floor =%d\n",rgba);
 	j = HEIGHT/2;
 	i = -1;
 	while (++i < WIDTH)
@@ -49,13 +51,13 @@ static void	draw_floor(mlx_image_t *img, char *floor)
 	}
 }
 
-void	render_sky_floor(mlx_t* mlx, t_parse *data)
+void	render_sky_floor(t_render *render, t_parse *data)
 {
 	mlx_image_t*	img;
 
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img = render->view;
 	ft_memset(img->pixels, 255, img->width * img->height * sizeof(int32_t));
 	draw_sky(img, data->ceil);
 	draw_floor(img, data->floor);
-	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_image_to_window(render->mlx, img, 0, 0);
 }

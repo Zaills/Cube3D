@@ -14,30 +14,32 @@
 #include "stdio.h"
 #include <math.h>
 
-void	movement(mlx_key_data_t key, t_movement* mv)
+void	movement(mlx_key_data_t key, t_move* move)
 {
 	t_render* render;
 
-	render = mv->render;
+	render = move->render;
 	if (key.key == MLX_KEY_W)
 	{
 		render->spawn_x += render->dirX * 0.1;
 		render->spawn_y += render->dirY * 0.1;
+		printf("W");
 	}
 	if (key.key == MLX_KEY_S)
 	{
 		render->spawn_x -= render->dirX * 0.1;
 		render->spawn_y -= render->dirY * 0.1;
+		printf("S");
 	}
 }
 
-void	rotation(mlx_key_data_t key, t_movement* mv)
+void	rotation(mlx_key_data_t key, t_move* move)
 {
 	t_render* render;
 	double oldDirX;
 	double oldPlaneX;
 
-	render = mv->render;
+	render = move->render;
 	oldDirX = render->dirX;
 	oldPlaneX = render->planeX;
 	if (key.key == MLX_KEY_RIGHT)
@@ -58,19 +60,21 @@ void	rotation(mlx_key_data_t key, t_movement* mv)
 
 void	key_hook(mlx_key_data_t key, void* param)
 {
-	t_movement* mv;
+	t_move* move;
 	t_render* render;
 
-	mv = param;
-	render = mv->render;
+	move = param;
+	render = move->render;
 	if (key.action == MLX_PRESS)
 	{
 		printf("key pressed\n");
 		if (key.key == MLX_KEY_W || key.key == MLX_KEY_S
 			|| key.key == MLX_KEY_A || key.key == MLX_KEY_D)
-			movement(key, mv);
+				movement(key, move);
 		if (key.key == MLX_KEY_LEFT || key.key == MLX_KEY_RIGHT)
-			rotation(key, mv);
+			rotation(key, move);
+		render_sky_floor(render, move->data);
+		raycast(render, move->data->map);
 	}
 	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)
 		{
@@ -80,12 +84,11 @@ void	key_hook(mlx_key_data_t key, void* param)
 			printf("plane x: %f\nplane y: %f\n", render->planeX, render->planeY);
 		}
 	if(key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
-		mlx_close_window(mv->mlx);
+		mlx_close_window(move->render->mlx);
 }
 
-void	init_movement(t_movement* movement, t_render* render, mlx_t* mlx, t_parse* data)
+void	init_move(t_move *move, t_render *render, t_parse *data)
 {
-	movement->mlx = mlx;
-	movement->render = render;
-	movement->map = data->map;
+	move->render = render;
+	move->data = data;
 }
