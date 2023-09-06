@@ -21,15 +21,31 @@ void	movement(mlx_key_data_t key, t_move* move)
 	render = move->render;
 	if (key.key == MLX_KEY_W)
 	{
-		render->spawn_x += render->dirX * 0.1;
-		render->spawn_y += render->dirY * 0.1;
-		printf("W");
+		if (move->data->map[(int)(render->spawn_x + render->dirX * 0.1)][(int)render->spawn_y] == '0')
+			render->spawn_x += render->dirX * 0.1;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->dirY * 0.1)])
+			render->spawn_y += render->dirY * 0.1;
 	}
 	if (key.key == MLX_KEY_S)
 	{
-		render->spawn_x -= render->dirX * 0.1;
-		render->spawn_y -= render->dirY * 0.1;
-		printf("S");
+		if (move->data->map[(int)(render->spawn_x - render->dirX * 0.1)][(int)render->spawn_y] == '0')
+			render->spawn_x -= render->dirX * 0.1;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->dirY * 0.1)])
+			render->spawn_y -= render->dirY * 0.1;
+	}
+	if (key.key == MLX_KEY_A)
+	{
+		if (move->data->map[(int)(render->spawn_x - render->planeX * 0.1)][(int)render->spawn_y] == '0')
+			render->spawn_x -= render->planeX * 0.1;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->planeY * 0.1)])
+			render->spawn_y -= render->planeY * 0.1;
+	}
+	if (key.key == MLX_KEY_D)
+	{
+		if (move->data->map[(int)(render->spawn_x + render->planeX * 0.1)][(int)render->spawn_y] == '0')
+			render->spawn_x += render->planeX * 0.1;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * 0.1)])
+			render->spawn_y += render->planeY * 0.1;
 	}
 }
 
@@ -79,7 +95,7 @@ void	key_hook(mlx_key_data_t key, void* param)
 	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)
 		{
 			printf("Info\n");
-			printf("spaw_x: %f\nspawn_y: %f\n", render->spawn_x, render->spawn_y);
+			printf("spawn_x: %f\nspawn_y: %f\n", render->spawn_x, render->spawn_y);
 			printf("dir x: %f\ndir y: %f\n", render->dirX, render->dirY);
 			printf("plane x: %f\nplane y: %f\n", render->planeX, render->planeY);
 		}
