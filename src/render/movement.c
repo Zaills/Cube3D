@@ -97,7 +97,7 @@ void	key_hook(mlx_key_data_t key, void* param)
 			rotation(key, move);
 		render_sky_floor(render, move->data);
 		raycast(render, move->data->map);
-		minimap(move->data, render->mlx);
+		minimap(move->data, move->render);
 		render_player(render, render->mlx);
 	}
 	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)

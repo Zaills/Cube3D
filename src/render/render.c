@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 11:49:36 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/07 14:37:34 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "render.h"
 #include "stdio.h"
 
-int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with render struct)
+/* int	init_texture(t_parse *data, mlx_t* mlx)
 {
 	mlx_texture_t* png;
 	mlx_image_t* img;
@@ -31,9 +31,9 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 		printf("img failed\n");
 		return (-1);
 	}
-	//mlx_image_to_window(mlx, img, 0, 0);
+	mlx_image_to_window(mlx, img, 0, 0);
 	return 1;
-}
+} */
 
 void	draw_ver_line(int start, int end, t_render *render, int x)
 {
@@ -61,13 +61,12 @@ void	render(t_parse *data)
 	t_move move;
 
 	init_render(&render, data);
-	render_sky_floor(&render,data);
-	init_texture(data, render.mlx); // check error
 	init_move(&move, &render, data);
-	minimap(data, render.mlx);
+	render_sky_floor(&render,data);
+	minimap(data, &render);
 	render_player(&render, render.mlx);
-	mlx_key_hook(render.mlx, &key_hook, &move);
 	raycast(&render, data->map);
+	mlx_key_hook(render.mlx, &key_hook, &move);
 	mlx_loop(render.mlx);
 	mlx_terminate(render.mlx);
 }

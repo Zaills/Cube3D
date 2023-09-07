@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 11:30:48 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/07 14:39:30 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct render
 {
 	mlx_t*			mlx;
 	mlx_image_t*	view;
+	mlx_image_t*	minimap;
+	mlx_image_t*	player;
 	double			rayDirX;
 	double			rayDirY;
 	double			spawn_x;
@@ -50,7 +52,7 @@ typedef struct move
 
 void	render(t_parse *data);
 void	render_sky_floor(t_render *render, t_parse *data);
-void	minimap(t_parse *data, mlx_t* mlx);
+void	minimap(t_parse* data, t_render *render);
 void	draw_ver_line(int start, int end, t_render *render, int x);
 void	raycast(t_render *render, char **map);
 //UTILS

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 11:56:18 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/07 14:43:22 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	get_player_pos(char **map, t_render *render)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				render->spawn_y = i;
-				render->spawn_x = j;
+				render->spawn_y = j;
+				render->spawn_x = i;
 				get_player_dir(map[i][j], render);
 			}
 			j++;
@@ -89,10 +89,12 @@ void	init_render(t_render *render, t_parse *data)
 {
 	render->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
+	render->minimap = mlx_new_image(render->mlx, 500, 500);
+	render->player = mlx_new_image(render->mlx, 10, 10);
 	get_player_pos(data->map, render);
-	//render->dirX = -1; // changer selon N S E W (direction de la vue fps)
-	//render->dirY = 0;
-	//render->planeX = 0;
-	//render->planeY = 0.66;
+//	render->dirX = 1; // changer selon N S E W (direction de la vue fps)
+//	render->dirY = 0;
+//	render->planeX = 0;
+//	render->planeY = -0.66;
 	printf("spawn is at coord:x=%f,y=%f\n",render->spawn_x, render->spawn_y);
 }

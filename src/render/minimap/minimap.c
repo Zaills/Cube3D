@@ -32,39 +32,34 @@ void	put_big_pixel(mlx_image_t* img, int x, int y, int color)
 	}
 }
 
-void	minimap(t_parse* data, mlx_t* mlx)
+void	minimap(t_parse* data, t_render *render)
 {
 	int x;
 	int y;
-	mlx_image_t* img;
 
 	x = 0;
 	y = 0;
-	img = mlx_new_image(mlx, 1000, 1000);
 	while (data->map[y])
 	{
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1')
-				put_big_pixel(img, x * 10, y * 10, 0x000000FF);
+				put_big_pixel(render->minimap, x * 10, y * 10, 0x000000FF);
 			else if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
-				put_big_pixel(img, x * 10, y * 10, 0xFFFFFFFF);
+				put_big_pixel(render->minimap, x * 10, y * 10, 0xFFFFFFFF);
 			else if (data->map[y][x] == '0')
-				put_big_pixel(img, x * 10, y * 10, 0xFFFFFFFF);
+				put_big_pixel(render->minimap, x * 10, y * 10, 0xFFFFFFFF);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_image_to_window(render->mlx, render->minimap, 0, 0);
 }
 
 void	render_player(t_render *render, mlx_t* mlx)
 {
-	mlx_image_t* img;
-
-	img = mlx_new_image(mlx, 10, 10);
-	put_big_pixel(img, 0, 0, 0x00FF00FF);
-	mlx_image_to_window(mlx, img, (int) (render->spawn_x * 10), (int) (render->spawn_y * 10));
+	put_big_pixel(render->player, 0, 0, 0x00FF00FF);
+	mlx_image_to_window(mlx, render->player, (int) (render->spawn_y * 10), (int) (render->spawn_x * 10));
 }
