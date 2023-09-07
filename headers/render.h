@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 18:35:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/07 10:36:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../../libft/libft.h"
 #define HEIGHT 800
 #define WIDTH 800
+#define MOVE_SPEED 0.3
 
 typedef struct render
 {

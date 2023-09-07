@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sky_floor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:28 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 16:29:14 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/07 10:37:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	draw_floor(mlx_image_t *img, char *floor)
 	int	rgba;
 
 	rgba = get_rgba(floor);
-	printf("rgba floor =%d\n",rgba);
+	//printf("rgba floor =%d\n",rgba);
 	j = HEIGHT/2;
 	i = -1;
 	while (++i < WIDTH)

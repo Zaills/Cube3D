@@ -21,31 +21,31 @@ void	movement(mlx_key_data_t key, t_move* move)
 	render = move->render;
 	if (key.key == MLX_KEY_W)
 	{
-		if (move->data->map[(int)(render->spawn_x + render->dirX * 0.1)][(int)render->spawn_y] == '0')
-			render->spawn_x += render->dirX * 0.1;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->dirY * 0.1)])
-			render->spawn_y += render->dirY * 0.1;
+		if (move->data->map[(int)(render->spawn_x + render->dirX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+			render->spawn_x += render->dirX * MOVE_SPEED;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->dirY * MOVE_SPEED)] == '0')
+			render->spawn_y += render->dirY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_S)
 	{
-		if (move->data->map[(int)(render->spawn_x - render->dirX * 0.1)][(int)render->spawn_y] == '0')
-			render->spawn_x -= render->dirX * 0.1;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->dirY * 0.1)])
-			render->spawn_y -= render->dirY * 0.1;
+		if (move->data->map[(int)(render->spawn_x - render->dirX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+			render->spawn_x -= render->dirX * MOVE_SPEED;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->dirY * MOVE_SPEED)] == '0')
+			render->spawn_y -= render->dirY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_A)
 	{
-		if (move->data->map[(int)(render->spawn_x - render->planeX * 0.1)][(int)render->spawn_y] == '0')
-			render->spawn_x -= render->planeX * 0.1;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->planeY * 0.1)])
-			render->spawn_y -= render->planeY * 0.1;
+		if (move->data->map[(int)(render->spawn_x - render->planeX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+			render->spawn_x -= render->planeX * MOVE_SPEED;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->planeY * MOVE_SPEED)] == '0')
+			render->spawn_y -= render->planeY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_D)
 	{
-		if (move->data->map[(int)(render->spawn_x + render->planeX * 0.1)][(int)render->spawn_y] == '0')
-			render->spawn_x += render->planeX * 0.1;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * 0.1)])
-			render->spawn_y += render->planeY * 0.1;
+		if (move->data->map[(int)(render->spawn_x + render->planeX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+			render->spawn_x += render->planeX * MOVE_SPEED;
+		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * MOVE_SPEED)] == '0')
+			render->spawn_y += render->planeY * MOVE_SPEED;
 	}
 }
 
@@ -60,17 +60,17 @@ void	rotation(mlx_key_data_t key, t_move* move)
 	oldPlaneX = render->planeX;
 	if (key.key == MLX_KEY_RIGHT)
 	{
-		render->dirX = render->dirX * cos(-0.1) - render->dirY * sin(-0.1);
-		render->dirY = oldDirX * sin(-0.1) + render->dirY * cos(-0.1);
-		render->planeX = render->planeX * cos(-0.1) - render->planeY * sin(-0.1);
-		render->planeY = oldPlaneX * sin(-0.1) + render->planeY * cos(-0.1);
+		render->dirX = render->dirX * cos(-MOVE_SPEED) - render->dirY * sin(-MOVE_SPEED);
+		render->dirY = oldDirX * sin(-MOVE_SPEED) + render->dirY * cos(-MOVE_SPEED);
+		render->planeX = render->planeX * cos(-MOVE_SPEED) - render->planeY * sin(-MOVE_SPEED);
+		render->planeY = oldPlaneX * sin(-MOVE_SPEED) + render->planeY * cos(-MOVE_SPEED);
 	}
 	if (key.key == MLX_KEY_LEFT)
 	{
-		render->dirX = render->dirX * cos(0.1) - render->dirY * sin(0.1);
-		render->dirY = oldDirX * sin(0.1) + render->dirY * cos(0.1);
-		render->planeX = render->planeX * cos(0.1) - render->planeY * sin(0.1);
-		render->planeY = oldPlaneX * sin(0.1) + render->planeY * cos(0.1);
+		render->dirX = render->dirX * cos(MOVE_SPEED) - render->dirY * sin(MOVE_SPEED);
+		render->dirY = oldDirX * sin(MOVE_SPEED) + render->dirY * cos(MOVE_SPEED);
+		render->planeX = render->planeX * cos(MOVE_SPEED) - render->planeY * sin(MOVE_SPEED);
+		render->planeY = oldPlaneX * sin(MOVE_SPEED) + render->planeY * cos(MOVE_SPEED);
 	}
 }
 
@@ -83,7 +83,6 @@ void	key_hook(mlx_key_data_t key, void* param)
 	render = move->render;
 	if (key.action == MLX_PRESS)
 	{
-		printf("key pressed\n");
 		if (key.key == MLX_KEY_W || key.key == MLX_KEY_S
 			|| key.key == MLX_KEY_A || key.key == MLX_KEY_D)
 				movement(key, move);
