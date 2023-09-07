@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 18:41:08 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/06 20:03:13 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,24 @@ int	init_texture(t_parse *data, mlx_t* mlx) //need check how to use this (with r
 
 void	draw_ver_line(int start, int end, t_render *render, int x)
 {
-	while (start < end)
+	if (render->side == 1)
 	{
-		mlx_put_pixel(render->view, x, start, 0xFF0000FF);
-		start++;
+		while (start < end)
+		{
+			mlx_put_pixel(render->view, x, start, (0xFF0000FF / 2));
+			start++;
+		}
+	}
+	else
+	{
+		while (start < end)
+		{
+			mlx_put_pixel(render->view, x, start, 0xFF0000FF);
+			start++;
+		}
 	}
 }
+
 void	render(t_parse *data)
 {
 	t_render render;
