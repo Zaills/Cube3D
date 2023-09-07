@@ -74,8 +74,8 @@ void	get_player_pos(char **map, t_render *render)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				render->spawn_y = j;
-				render->spawn_x = i;
+				render->spawn_y = j + 0.5;
+				render->spawn_x = i + 0.5;
 				get_player_dir(map[i][j], render);
 			}
 			j++;
