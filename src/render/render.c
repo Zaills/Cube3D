@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 20:03:13 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/07 10:46:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	render(t_parse *data)
 	render_sky_floor(&render,data);
 	init_texture(data, render.mlx); // check error
 	init_move(&move, &render, data);
-	printf("dir x: %f\ndir y: %f\n", render.dirX, render.dirY);
 	minimap(data, render.mlx);
 	render_player(&render, render.mlx);
 	mlx_key_hook(render.mlx, &key_hook, &move);

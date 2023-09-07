@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/06 18:14:00 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/07 11:23:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,38 @@ int	get_rgba(char *type)
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
+void	get_player_dir(char dir, t_render *render)
+{
+	if (dir == 'N')
+	{
+		render->dirX = -1;
+		render->dirY = 0;
+		render->planeX = 0;
+		render->planeY = 0.66;
+	}
+	if (dir == 'S')
+	{
+		render->dirX = 1;
+		render->dirY = 0;
+		render->planeX = 0;
+		render->planeY = -0.66;
+	}
+	if (dir == 'E')
+	{
+		render->dirX = 0;
+		render->dirY = 1;
+		render->planeX = 0.66;
+		render->planeY = 0;
+	}
+	if (dir == 'W')
+	{
+		render->dirX = 0;
+		render->dirY = -1;
+		render->planeX = -0.66;
+		render->planeY = 0;
+	}
+}
+
 void	get_player_pos(char **map, t_render *render)
 {
 	int	i;
@@ -44,6 +76,7 @@ void	get_player_pos(char **map, t_render *render)
 			{
 				render->spawn_y = i;
 				render->spawn_x = j;
+				get_player_dir(map[i][j], render);
 			}
 			j++;
 		}
@@ -57,9 +90,9 @@ void	init_render(t_render *render, t_parse *data)
 	render->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
 	get_player_pos(data->map, render);
-	render->dirX = -1; // changer selon N S E W (direction de la vue fps)
-	render->dirY = 0;
-	render->planeX = 0;
-	render->planeY = 0.66;
+	//render->dirX = -1; // changer selon N S E W (direction de la vue fps)
+	//render->dirY = 0;
+	//render->planeX = 0;
+	//render->planeY = 0.66;
 	printf("spawn is at coord:x=%f,y=%f\n",render->spawn_x, render->spawn_y);
 }

@@ -14,6 +14,13 @@
 #include "stdio.h"
 #include <math.h>
 
+int	verif_move(char	nxt)
+{
+	if (nxt == '0' || nxt == 'N' || nxt == 'S' || nxt == 'E' || nxt == 'W')
+		return 1;
+	return 0;
+}
+
 void	movement(mlx_key_data_t key, t_move* move)
 {
 	t_render* render;
@@ -21,30 +28,30 @@ void	movement(mlx_key_data_t key, t_move* move)
 	render = move->render;
 	if (key.key == MLX_KEY_W)
 	{
-		if (move->data->map[(int)(render->spawn_x + render->dirX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x + render->dirX * MOVE_SPEED)][(int)render->spawn_y]))
 			render->spawn_x += render->dirX * MOVE_SPEED;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->dirY * MOVE_SPEED)] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->dirY * MOVE_SPEED)]))
 			render->spawn_y += render->dirY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_S)
 	{
-		if (move->data->map[(int)(render->spawn_x - render->dirX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x - render->dirX * MOVE_SPEED)][(int)render->spawn_y]))
 			render->spawn_x -= render->dirX * MOVE_SPEED;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->dirY * MOVE_SPEED)] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->dirY * MOVE_SPEED)]))
 			render->spawn_y -= render->dirY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_A)
 	{
-		if (move->data->map[(int)(render->spawn_x - render->planeX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x - render->planeX * MOVE_SPEED)][(int)render->spawn_y]))
 			render->spawn_x -= render->planeX * MOVE_SPEED;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->planeY * MOVE_SPEED)] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y - render->planeY * MOVE_SPEED)]))
 			render->spawn_y -= render->planeY * MOVE_SPEED;
 	}
 	if (key.key == MLX_KEY_D)
 	{
-		if (move->data->map[(int)(render->spawn_x + render->planeX * MOVE_SPEED)][(int)render->spawn_y] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x + render->planeX * MOVE_SPEED)][(int)render->spawn_y]))
 			render->spawn_x += render->planeX * MOVE_SPEED;
-		if (move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * MOVE_SPEED)] == '0')
+		if (verif_move(move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * MOVE_SPEED)]))
 			render->spawn_y += render->planeY * MOVE_SPEED;
 	}
 }
@@ -90,10 +97,12 @@ void	key_hook(mlx_key_data_t key, void* param)
 			rotation(key, move);
 		render_sky_floor(render, move->data);
 		raycast(render, move->data->map);
+		minimap(move->data, render->mlx);
+		render_player(render, render->mlx);
 	}
 	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)
 		{
-			printf("Info\n");
+			printf("\nInfo\n");
 			printf("spawn_x: %f\nspawn_y: %f\n", render->spawn_x, render->spawn_y);
 			printf("dir x: %f\ndir y: %f\n", render->dirX, render->dirY);
 			printf("plane x: %f\nplane y: %f\n", render->planeX, render->planeY);
