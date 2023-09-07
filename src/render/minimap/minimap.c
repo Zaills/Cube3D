@@ -61,5 +61,6 @@ void	minimap(t_parse* data, t_render *render)
 void	render_player(t_render *render, mlx_t* mlx)
 {
 	put_big_pixel(render->player, 0, 0, 0x00FF00FF);
-	mlx_image_to_window(mlx, render->player, (int) (render->spawn_y * 10), (int) (render->spawn_x * 10));
+	mlx_image_to_window(mlx, render->player, (int) ((render->spawn_y - 0.5) * 10), (int) ((render->spawn_x - 0.5) * 10));
+	//addded -0.5 pour plus de precisions sur la pos du joueuers
 }
