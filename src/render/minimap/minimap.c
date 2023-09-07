@@ -66,5 +66,5 @@ void	render_player(t_render *render, mlx_t* mlx)
 
 	img = mlx_new_image(mlx, 10, 10);
 	put_big_pixel(img, 0, 0, 0x00FF00FF);
-	mlx_image_to_window(mlx, img, render->spawn_x * 10, render->spawn_y * 10);
+	mlx_image_to_window(mlx, img, (int) (render->spawn_x * 10), (int) (render->spawn_y * 10));
 }
