@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/01 13:49:17 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/08 13:08:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_map(t_parse *data)
 	}
 	if (check_line(data->map[i-1], 1) == -1) // I check for spawn here
 		return (-1);
-	if (check_closed(data) == -1) //need check spawn valid ( pas hors map) TODO
+	if (check_closed(data) == -1) //need check spawn valid ( pas hors map) DONE
 	{
 		printf("map isn't closed\n");
 		return (-1);

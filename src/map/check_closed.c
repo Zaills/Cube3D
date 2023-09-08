@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/09/01 14:38:56 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/08 13:07:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int	check_closed(t_parse *data)
 	{
 		while (map_edit[i][j])
 		{
-			if (map_edit[i][j] == '0')
+			if (map_edit[i][j] == '0' || map_edit[i][j] == 'N'
+				 || map_edit[i][j] == 'S' || map_edit[i][j] == 'E'
+				 || map_edit[i][j] == 'W')
 				if (is_surrounded(map_edit, i , j) == -1)
 					return (-1);
 			j++;
