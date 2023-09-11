@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:58:20 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/11 11:43:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MAP_ERR 4
 
 char	**open_map(int ac, char **av);
+void	close_map(t_parse *data);
 char	**cub_to_cubed(char *cub);
 void	free_cubed(char **cubed);
 int		init_identifier(t_parse *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/08/31 14:06:08 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:43:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,5 @@ void	free_parsedata(t_parse *data)
 		free(data->so_text);
 	if (data->we_text != NULL)
 		free(data->we_text);
-	if (data->file != NULL)
-		free_cubed(data->file);
+	close_map(data);
 }

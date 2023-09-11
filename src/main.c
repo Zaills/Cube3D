@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/08 17:55:09 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/11 11:44:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 		return (output_error(MAP_ERR));
 	}
 	d_print_parsedata(&data);
-	//free_parsedata(&data);
 	printf("Good\n");
 	render(&data);
+	free_parsedata(&data);
 }

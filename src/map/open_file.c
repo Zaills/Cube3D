@@ -51,7 +51,10 @@ char	*open_file(char *file)
 		return (0);
 	ret = read(fd, str, 10);
 	if (ret == -1)
+	{
+		close(fd);
 		return (0);
+	}
 	out = ft_calloc(sizeof(char), 1);
 	str[ret] = 0;
 	out = n_strjoin(out, str);
@@ -59,10 +62,14 @@ char	*open_file(char *file)
 	{
 		ret = read(fd, str, 10);
 		if (!ret)
+		{
+			close(fd);
 			return (out);
+		}
 		str[ret] = 0;
 		out = n_strjoin(out, str);
 	}
+	close(fd);
 	return (out);
 }
 
@@ -112,4 +119,17 @@ char	**open_map(int ac, char **av)
 	cubed = cub_to_cubed(cub);
 	free(cub);
 	return (cubed);
+}
+
+void	close_map(t_parse *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->file[i])
+	{
+		free(data->file[i]);
+		i++;
+	}
+	free(data->file);
 }

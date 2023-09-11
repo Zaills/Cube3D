@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 14:43:22 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/11 11:52:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	get_rgba(char *type)
 	r = ft_atoi(temp[0]);
 	g = ft_atoi(temp[1]);
 	b = ft_atoi(temp[2]);
+	free(temp[0]);
+	free(temp[1]);
+	free(temp[2]);
+	free(temp);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
