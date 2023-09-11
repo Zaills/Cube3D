@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sky_floor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:28 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/11 11:33:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:08:24 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ static void	draw_floor(mlx_image_t *img, char *floor)
 
 void	render_sky_floor(t_render *render, t_parse *data)
 {
-	mlx_image_t*	img;
-
-	img = render->view;
-	//ft_memset(img->pixels, 255, img->width * img->height * sizeof(int32_t));
-	draw_sky(img, data->ceil);
-	draw_floor(img, data->floor);
-	mlx_image_to_window(render->mlx, img, 0, 0);
+	draw_sky(render->view, data->ceil);
+	draw_floor(render->view, data->floor);
+	mlx_image_to_window(render->mlx, render->view, 0, 0);
 }

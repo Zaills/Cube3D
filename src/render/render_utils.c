@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/11 11:52:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:23:52 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "render.h"
 #include "parse_struct.h"
-#include "stdio.h"
 
 int	get_rgba(char *type)
 {
@@ -81,6 +80,7 @@ void	get_player_pos(char **map, t_render *render)
 				render->spawn_y = j + 0.5;
 				render->spawn_x = i + 0.5;
 				get_player_dir(map[i][j], render);
+				return ;
 			}
 			j++;
 		}
@@ -95,10 +95,8 @@ void	init_render(t_render *render, t_parse *data)
 	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
 	render->minimap = mlx_new_image(render->mlx, 500, 500);
 	render->player = mlx_new_image(render->mlx, 10, 10);
+	xpm_t *t = mlx_load_xpm42("./textures/west.xpm42");
+	render->test = mlx_texture_to_image(render->mlx, &t->texture);
+	mlx_delete_xpm42(t);
 	get_player_pos(data->map, render);
-//	render->dirX = 1; // changer selon N S E W (direction de la vue fps)
-//	render->dirY = 0;
-//	render->planeX = 0;
-//	render->planeY = -0.66;
-	printf("spawn is at coord:x=%f,y=%f\n",render->spawn_x, render->spawn_y);
 }

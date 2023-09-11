@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 14:44:29 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/11 18:15:34 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,31 @@ static void	draw_wall(double wall_dist, int i, t_render *render)
 		draw_start = 0;
 	if (draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	draw_ver_line(draw_start, draw_end, render, i);
+	//
+ 	double wallX;
+	if(render->side == 0)
+		wallX = render->spawn_y + wall_dist * render->rayDirY;
+	else          wallX = render->spawn_x + wall_dist * render->rayDirX;
+	wallX -= floor((wallX));
+	int texX = (int)wallX * (double)(64);
+	if(render->side == 0 && render->rayDirX > 0)
+		texX = 64 - texX - 1;
+	if(render->side == 1 && render->rayDirY < 0)
+		texX = 64 - texX - 1;
+	double step = 1.0 * 64 / line_height;
+	double texPos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
+	for(int y = draw_start; y < draw_end; y++)
+	{
+		int texY = (int)texPos & (64 - 1);
+		texPos += step;
+		int32_t color = render->test->pixels[64 * texY + texX]; // PIXEL CHOSEN ON TEXTURE (probablement pas le bon)
+		if(render->side == 1)
+			color = color / 2;
+		// (color >> 1) & 8355711; maybe plus rapide
+		mlx_put_pixel(render->view, i, y, color);
+	}
+	//draw_ver_line(draw_start, draw_end, render, i);
+	//
 }
 
 static void	update_var(t_render *render, int i)

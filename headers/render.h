@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/07 14:39:30 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/11 18:11:58 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct render
 	mlx_image_t*	view;
 	mlx_image_t*	minimap;
 	mlx_image_t*	player;
+	mlx_image_t*	test;
 	double			rayDirX;
 	double			rayDirY;
 	double			spawn_x;
