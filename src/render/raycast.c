@@ -6,12 +6,24 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/11 18:15:34 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/12 18:54:08 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "math.h"
+
+int	encode_color(int x, int y, t_render *render)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = render->test->pixels[64 * (x + y)];
+	g = render->test->pixels[64 * (x + y) + 1];
+	b = render->test->pixels[64 * (x + y) + 2];
+	return (r << 24 | g << 16 | b << 8 | 255);
+}
 
 static void	draw_wall(double wall_dist, int i, t_render *render)
 {
@@ -30,22 +42,24 @@ static void	draw_wall(double wall_dist, int i, t_render *render)
  	double wallX;
 	if(render->side == 0)
 		wallX = render->spawn_y + wall_dist * render->rayDirY;
-	else          wallX = render->spawn_x + wall_dist * render->rayDirX;
+	else
+		wallX = render->spawn_x + wall_dist * render->rayDirX;
 	wallX -= floor((wallX));
-	int texX = (int)wallX * (double)(64);
+	int texX = (int)(wallX * (double)(64));
 	if(render->side == 0 && render->rayDirX > 0)
 		texX = 64 - texX - 1;
 	if(render->side == 1 && render->rayDirY < 0)
 		texX = 64 - texX - 1;
 	double step = 1.0 * 64 / line_height;
-	double texPos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
+	double texPos = (draw_start - HEIGHT / 2 + line_height / 2) * step; //X
 	for(int y = draw_start; y < draw_end; y++)
 	{
 		int texY = (int)texPos & (64 - 1);
 		texPos += step;
-		int32_t color = render->test->pixels[64 * texY + texX]; // PIXEL CHOSEN ON TEXTURE (probablement pas le bon)
-		if(render->side == 1)
-			color = color / 2;
+		int color = encode_color(texX, texY, render);
+		//render->test->pixels[(texY + texX)];
+		//if(render->side == 1)
+		//	color = color / 2;
 		// (color >> 1) & 8355711; maybe plus rapide
 		mlx_put_pixel(render->view, i, y, color);
 	}
