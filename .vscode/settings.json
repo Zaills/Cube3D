@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"mlx42.h": "c",
 		"render.h": "c",
-		"parse_struct.h": "c"
+		"parse_struct.h": "c",
+		"stdio.h": "c"
 	}
 }
