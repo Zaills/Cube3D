@@ -54,6 +54,10 @@ void	movement(mlx_key_data_t key, t_move* move)
 		if (verif_move(move->data->map[(int)(render->spawn_x)][(int)(render->spawn_y + render->planeY * MOVE_SPEED)]))
 			render->spawn_y += render->planeY * MOVE_SPEED;
 	}
+	render_sky_floor(render, move->data);
+	raycast(render, move->data->map);
+	minimap(move->data, move->render);
+	render_player(render, render->mlx);
 }
 
 void	rotation(mlx_key_data_t key, t_move* move)
@@ -79,6 +83,10 @@ void	rotation(mlx_key_data_t key, t_move* move)
 		render->planeX = render->planeX * cos(MOVE_SPEED) - render->planeY * sin(MOVE_SPEED);
 		render->planeY = oldPlaneX * sin(MOVE_SPEED) + render->planeY * cos(MOVE_SPEED);
 	}
+	render_sky_floor(render, move->data);
+	raycast(render, move->data->map);
+	minimap(move->data, move->render);
+	render_player(render, render->mlx);
 }
 
 void	key_hook(mlx_key_data_t key, void* param)
@@ -88,18 +96,11 @@ void	key_hook(mlx_key_data_t key, void* param)
 
 	move = param;
 	render = move->render;
-	if (key.action == MLX_PRESS)
-	{
 		if (key.key == MLX_KEY_W || key.key == MLX_KEY_S
 			|| key.key == MLX_KEY_A || key.key == MLX_KEY_D)
 				movement(key, move);
 		if (key.key == MLX_KEY_LEFT || key.key == MLX_KEY_RIGHT)
 			rotation(key, move);
-		render_sky_floor(render, move->data);
-		raycast(render, move->data->map);
-		minimap(move->data, move->render);
-		render_player(render, render->mlx);
-	}
 	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)
 		{
 			printf("\nInfo\n");
