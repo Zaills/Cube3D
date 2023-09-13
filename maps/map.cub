@@ -1,7 +1,7 @@
-NO ./textures/wall.png
-SO ./textures/wall.png
-WE ./textures/wall.png
-EA ./textures/wall.png
+NO ./textures/north.xpm42
+WE ./textures/west.xpm42
+EA ./textures/east.xpm42
+SO ./textures/south.xpm42
 F 220,100,0
 C 0,255,40
 

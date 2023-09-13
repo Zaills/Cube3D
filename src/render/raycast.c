@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/13 14:17:58 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/13 18:22:14 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,30 @@
 #include "math.h"
 #include "stdio.h"
 
+int	get_texture(t_render *render)
+{
+	if (render->side == 0 && render->rayDirX < 0) // NORTH
+		return (0);
+	if (render->side == 0 && render->rayDirX > 0) // SOUTH
+		return (2);
+	if (render->side == 1 && render->rayDirY < 0) //WEST
+		return (3);
+	return (1); //EAST
+}
+
 int	encode_color(int x, int y, t_render *render)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	pixelPos;
+	int	text_index;
 
+	text_index = get_texture(render);
 	pixelPos = (4 * x) + (256 * y);
-	r = render->test->pixels[pixelPos];
-	g = render->test->pixels[pixelPos + 1];
-	b = render->test->pixels[pixelPos + 2];
+	r = render->text[text_index]->pixels[pixelPos];
+	g = render->text[text_index]->pixels[pixelPos + 1];
+	b = render->text[text_index]->pixels[pixelPos + 2];
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
@@ -65,8 +78,6 @@ static void	draw_wall(double wall_dist, int i, t_render *render)
 		// (color >> 1) & 8355711; maybe plus rapide
 		mlx_put_pixel(render->view, i, y, color);
 	}
-	//draw_ver_line(draw_start, draw_end, render, i);
-	//
 }
 
 static void	update_var(t_render *render, int i)

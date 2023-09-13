@@ -1,5 +1,5 @@
-    NO./textures/wall.png
-					SO ./coins.xpm
+    NO./textures/north.xpm42
+					SO ./textures/south.xpm42
 
 
 
@@ -7,8 +7,8 @@
 
 
 
-                                               WE ./coins.xpm
-   EA ./coins.xpm
+                                               WE ./textures/west.xpm42
+   EA ./textures/east.xpm42
 F220,100,0
 C 					255,30,213
 
