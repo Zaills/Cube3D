@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "render.h"
-#include "stdio.h"
 #include <math.h>
 
 void	movement_ver(mlx_key_data_t key, t_move *move)
