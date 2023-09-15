@@ -39,10 +39,11 @@ char	*n_strjoin(char *str, char *join)
 int	read_file(char *str, char **out, int fd)
 {
 	int	ret;
+
 	while(str[0])
 	{
 		ret = read(fd, str, 10);
-		if ( !ret )
+		if (!ret )
 		{
 			close(fd);
 			return (1);
