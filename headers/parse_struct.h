@@ -6,12 +6,12 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:56:48 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/04 14:58:32 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:03:16 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef PARSE_STRUCT_H
+# define PARSE_STRUCT_H
 
 typedef struct parsing
 {

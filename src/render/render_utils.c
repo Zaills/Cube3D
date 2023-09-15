@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 14:08:19 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:11:06 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,30 @@ int	get_rgba(char *type)
 
 void	get_player_dir(char dir, t_render *render)
 {
-	render->dirX = -1;
-	render->dirY = 0;
-	render->planeX = 0;
-	render->planeY = 0.66;
+	render->dirx = -1;
+	render->diry = 0;
+	render->planex = 0;
+	render->planey = 0.66;
 	if (dir == 'S')
 	{
-		render->dirX = 1;
-		render->dirY = 0;
-		render->planeX = 0;
-		render->planeY = -0.66;
+		render->dirx = 1;
+		render->diry = 0;
+		render->planex = 0;
+		render->planey = -0.66;
 	}
 	if (dir == 'E')
 	{
-		render->dirX = 0;
-		render->dirY = 1;
-		render->planeX = 0.66;
-		render->planeY = 0;
+		render->dirx = 0;
+		render->diry = 1;
+		render->planex = 0.66;
+		render->planey = 0;
 	}
 	if (dir == 'W')
 	{
-		render->dirX = 0;
-		render->dirY = -1;
-		render->planeX = -0.66;
-		render->planeY = 0;
+		render->dirx = 0;
+		render->diry = -1;
+		render->planex = -0.66;
+		render->planey = 0;
 	}
 }
 
@@ -87,11 +87,11 @@ void	get_player_pos(char **map, t_render *render)
 
 int	get_texture(t_render *render)
 {
-	if (render->side == 0 && render->rayDirX < 0)
+	if (render->side == 0 && render->raydirx < 0)
 		return (0);
-	if (render->side == 0 && render->rayDirX > 0)
+	if (render->side == 0 && render->raydirx > 0)
 		return (2);
-	if (render->side == 1 && render->rayDirY < 0)
+	if (render->side == 1 && render->raydiry < 0)
 		return (3);
 	return (1);
 }

@@ -39,8 +39,10 @@ ifdef BONUS
 	src/render/sky_floor.c\
 	src/render/raycast.c\
 	src/render/bonus/movement.c\
+	src/render/movement_utils.c\
 	src/render/render_wall.c\
 	src/render/bonus/minimap.c\
+	src/map/close_file.c \
 	src/data_init.c\
 
 endif
@@ -57,6 +59,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
 bonus:
+	make fclean;
 	make BONUS=1;
 
 clean:

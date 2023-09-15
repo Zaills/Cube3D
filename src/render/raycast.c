@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:26:40 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 14:11:26 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 16:11:29 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,62 +18,62 @@ static void	update_var(t_render *render, int i)
 	double	camera_x;
 
 	camera_x = 2 * i / (double)WIDTH - 1;
-	render->rayDirX = render->dirX + render->planeX * camera_x;
-	render->rayDirY = render->dirY + render->planeY * camera_x;
-	render->mapX = (int)render->spawn_x;
-	render->mapY = (int)render->spawn_y;
-	if (render->rayDirX == 0)
-		render->deltaDistX = 1e30;
+	render->raydirx = render->dirx + render->planex * camera_x;
+	render->raydiry = render->diry + render->planey * camera_x;
+	render->mapx = (int)render->spawn_x;
+	render->mapy = (int)render->spawn_y;
+	if (render->raydirx == 0)
+		render->deltadistx = 1e30;
 	else
-		render->deltaDistX = fabs(1 / render->rayDirX);
-	if (render->rayDirY == 0)
-		render->deltaDistY = 1e30;
+		render->deltadistx = fabs(1 / render->raydirx);
+	if (render->raydiry == 0)
+		render->deltadisty = 1e30;
 	else
-		render->deltaDistY = fabs(1 / render->rayDirY);
+		render->deltadisty = fabs(1 / render->raydiry);
 }
 
 static void	dda(t_render *render, char **map)
 {
 	while (1)
 	{
-		if (render->sideDistX < render->sideDistY)
+		if (render->side_distx < render->side_disty)
 		{
-			render->sideDistX += render->deltaDistX;
-			render->mapX += render->stepX;
+			render->side_distx += render->deltadistx;
+			render->mapx += render->stepx;
 			render->side = 0;
 		}
 		else
 		{
-			render->sideDistY += render->deltaDistY;
-			render->mapY += render->stepY;
+			render->side_disty += render->deltadisty;
+			render->mapy += render->stepy;
 			render->side = 1;
 		}
-		if (map[render->mapX][render->mapY] == '1')
+		if (map[render->mapx][render->mapy] == '1')
 			return ;
 	}
 }
 
 static void	step_and_dist(t_render *r)
 {
-	if (r->rayDirX < 0)
+	if (r->raydirx < 0)
 	{
-		r->stepX = -1;
-		r->sideDistX = (r->spawn_x - r->mapX) * r->deltaDistX;
+		r->stepx = -1;
+		r->side_distx = (r->spawn_x - r->mapx) * r->deltadistx;
 	}
 	else
 	{
-		r->stepX = 1;
-		r->sideDistX = (r->mapX + 1.0 - r->spawn_x) * r->deltaDistX;
+		r->stepx = 1;
+		r->side_distx = (r->mapx + 1.0 - r->spawn_x) * r->deltadistx;
 	}
-	if (r->rayDirY < 0)
+	if (r->raydiry < 0)
 	{
-		r->stepY = -1;
-		r->sideDistY = (r->spawn_y - r->mapY) * r->deltaDistY;
+		r->stepy = -1;
+		r->side_disty = (r->spawn_y - r->mapy) * r->deltadisty;
 	}
 	else
 	{
-		r->stepY = 1;
-		r->sideDistY = (r->mapY + 1.0 - r->spawn_y) * r->deltaDistY;
+		r->stepy = 1;
+		r->side_disty = (r->mapy + 1.0 - r->spawn_y) * r->deltadisty;
 	}
 }
 
@@ -89,9 +89,9 @@ void	raycast(t_render *render, char **map)
 		step_and_dist(render);
 		dda(render, map);
 		if (render->side == 0)
-			wall_dist = (render->sideDistX - render->deltaDistX);
+			wall_dist = (render->side_distx - render->deltadistx);
 		else
-			wall_dist = (render->sideDistY - render->deltaDistY);
+			wall_dist = (render->side_disty - render->deltadisty);
 		draw_wall(wall_dist, i, render);
 	}
 }
