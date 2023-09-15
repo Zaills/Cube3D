@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 13:55:06 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 15:23:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_map(t_parse *data, int i)
 		== (int)ft_strlen(data->file[i]))
 		i++;
 	data->map = &data->file[i];
-	return (-1);
+	return (- 1);
 }
 
 static int	check_line(char *line, int check_spawn)
