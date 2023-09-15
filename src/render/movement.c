@@ -23,7 +23,7 @@ void	movement_ver(mlx_key_data_t key, t_move *move)
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x + render->dirX * (MOVE_SPEED + 0.01))]
-				[(int)render->spawn_y]))
+			[(int)render->spawn_y]))
 			render->spawn_x += render->dirX * MOVE_SPEED;
 		if (verif_move(move->data->map[(int)(render->spawn_x)]
 			[(int)(render->spawn_y + render->dirY * (MOVE_SPEED + 0.01))]))
@@ -33,7 +33,7 @@ void	movement_ver(mlx_key_data_t key, t_move *move)
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x - render->dirX * (MOVE_SPEED + 0.01))]
-				[(int)render->spawn_y]))
+			[(int)render->spawn_y]))
 			render->spawn_x -= render->dirX * MOVE_SPEED;
 		if (verif_move(move->data->map[(int)(render->spawn_x)]
 			[(int)(render->spawn_y - render->dirY * (MOVE_SPEED + 0.01))]))
@@ -52,7 +52,7 @@ void	movement_hor(mlx_key_data_t key, t_move *move)
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x - render->planeX * (MOVE_SPEED + 0.01))]
-				[(int)render->spawn_y]))
+			[(int)render->spawn_y]))
 			render->spawn_x -= render->planeX * MOVE_SPEED;
 		if (verif_move(move->data->map[(int)(render->spawn_x)]
 			[(int)(render->spawn_y - render->planeY * (MOVE_SPEED + 0.01))]))
@@ -62,7 +62,7 @@ void	movement_hor(mlx_key_data_t key, t_move *move)
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x + render->planeX * (MOVE_SPEED + 0.01))]
-				[(int)render->spawn_y]))
+			[(int)render->spawn_y]))
 			render->spawn_x += render->planeX * MOVE_SPEED;
 		if (verif_move(move->data->map[(int)(render->spawn_x)]
 			[(int)(render->spawn_y + render->planeY * (MOVE_SPEED + 0.01))]))
