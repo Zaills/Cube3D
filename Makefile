@@ -21,6 +21,7 @@ FILES= src/main.c\
 	src/render/sky_floor.c\
 	src/render/raycast.c\
 	src/render/movement.c\
+	src/render/movement_utils.c\
 	src/render/render_wall.c\
 	src/data_init.c\
 
