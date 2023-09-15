@@ -12,6 +12,7 @@ BONUS_OBJ=src/render/bonus/minimap.o\
 FILES= src/main.c\
 		src/utils.c\
 	src/map/open_file.c \
+	src/map/close_file.c \
 	src/map/check_map.c\
 	src/map/check_closed.c \
 	src/map/cub_to_cubed.c \

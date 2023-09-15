@@ -36,6 +36,23 @@ char	*n_strjoin(char *str, char *join)
 	return (out);
 }
 
+int	read_file(char *str, char **out, int fd)
+{
+	int	ret;
+	while(str[0])
+	{
+		ret = read(fd, str, 10);
+		if ( !ret )
+		{
+			close(fd);
+			return (1);
+		}
+		str[ret] = 0;
+		*out = n_strjoin(*out, str);
+	}
+	return (0);
+}
+
 char	*open_file(char *file)
 {
 	int		fd;
@@ -55,17 +72,7 @@ char	*open_file(char *file)
 	out = ft_calloc(sizeof(char), 1);
 	str[ret] = 0;
 	out = n_strjoin(out, str);
-	while (str[0])
-	{
-		ret = read(fd, str, 10);
-		if (!ret)
-		{
-			close(fd);
-			return (out);
-		}
-		str[ret] = 0;
-		out = n_strjoin(out, str);
-	}
+	read_file(str, &out, fd);
 	close(fd);
 	return (out);
 }
@@ -116,17 +123,4 @@ char	**open_map(int ac, char **av)
 	cubed = cub_to_cubed(cub);
 	free(cub);
 	return (cubed);
-}
-
-void	close_map(t_parse *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->file[i])
-	{
-		free(data->file[i]);
-		i++;
-	}
-	free(data->file);
 }
