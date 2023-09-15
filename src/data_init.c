@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/11 11:43:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/15 13:55:42 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	init_identifier(t_parse *data)
 			data->floor = ft_strtrim(&temp[1], " \t");
 		else if (check_identifier(temp, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
-		else if (count_c(temp, ' ') + count_c(temp, '\t') != (int)ft_strlen(temp))
+		else if (count_c(temp, ' ') + count_c(temp, '\t')
+			!= (int)ft_strlen(temp))
 			return (output_error(ORDER_SYMB));
 	}
-	get_map(data, j);
-	return (-1);
+	return (get_map(data, j));
 }
 
 void	free_parsedata(t_parse *data)

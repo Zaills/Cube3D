@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:27 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 14:31:24 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	render(t_parse *data)
 		return ;
 	init_move(&move, &render, data);
 	render_sky_floor(&render, data);
+	minimap(data, &render);
+	render_player(&render, render.mlx);
 	raycast(&render, data->map);
 	mlx_key_hook(render.mlx, &key_hook, &move);
 	mlx_loop(render.mlx);

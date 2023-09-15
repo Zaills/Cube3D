@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/11 16:16:24 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 13:40:55 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int ac, char **av)
 		free_parsedata(&data);
 		return (output_error(MAP_ERR));
 	}
-	d_print_parsedata(&data);
 	printf("Good\n");
 	render(&data);
 	free_parsedata(&data);

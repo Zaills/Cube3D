@@ -56,6 +56,8 @@ void	movement(mlx_key_data_t key, t_move	*move)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, move->render);
+	render_player(render, render->mlx);
 }
 
 void	rotation(mlx_key_data_t key, t_move	*move)
@@ -83,6 +85,8 @@ void	rotation(mlx_key_data_t key, t_move	*move)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, move->render);
+	render_player(render, render->mlx);
 }
 
 void	key_hook(mlx_key_data_t key, void	*param)

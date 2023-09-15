@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/13 15:19:38 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/15 14:13:07 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "parse_struct.h"
 # include "../../libft/libft.h"
-#define HEIGHT 800
-#define WIDTH 800
+#define HEIGHT 1000
+#define WIDTH 1800
 #define MOVE_SPEED 0.1
 
 typedef struct render
@@ -38,11 +38,16 @@ typedef struct render
 	double			deltaDistY;
 	double			sideDistX;
 	double			sideDistY;
+	double			wallX;
+	double			texPos;
+	int				line_height;
 	int				stepX;
 	int				stepY;
 	int				mapX;
 	int				mapY;
 	int				side;
+	int				texX;
+	int				texY;
 }		t_render;
 
 typedef struct move
@@ -55,12 +60,14 @@ void	render(t_parse *data);
 void	render_sky_floor(t_render *render, t_parse *data);
 void	minimap(t_parse* data, t_render *render);
 void	raycast(t_render *render, char **map);
+void	draw_wall(double wall_dist, int i, t_render *render);
 //UTILS
 void	render_player(t_render *render, mlx_t* mlx);
 void	key_hook(mlx_key_data_t key, void* param);
-int		init_render(t_render *render, t_parse *data);
 void	init_move(t_move *move, t_render *render, t_parse *data);
 void	get_player_pos(char **map, t_render *render);
 int		get_rgba(char *type);
+int		get_texture(t_render *render);
+int		encode_color(int x, int y, t_render *render);
 
 #endif

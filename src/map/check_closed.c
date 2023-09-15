@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_closed.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/09/08 13:07:58 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/15 13:35:44 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int get_len_line(char *line)
+static int	get_len_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
@@ -22,9 +22,9 @@ static int get_len_line(char *line)
 	return (i);
 }
 
-static int get_len_map(char **map)
+static int	get_len_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -34,10 +34,10 @@ static int get_len_map(char **map)
 
 static int	is_surrounded(char **map, int i, int j)
 {
-	int verif;
+	int	verif;
 
 	verif = 0;
-	if(i == 0 || j == 0 || j == get_len_line(map[i]) || i == get_len_map(map)
+	if (i == 0 || j == 0 || j == get_len_line(map[i]) || i == get_len_map(map)
 		|| j >= get_len_line(map[i + 1]) || j >= get_len_line(map[i - 1]))
 		return (-1);
 	if (map[i][j + 1] == '1' || map[i][j + 1] == '0' || map[i][j + 1] == 'N'
@@ -73,9 +73,9 @@ int	check_closed(t_parse *data)
 		while (map_edit[i][j])
 		{
 			if (map_edit[i][j] == '0' || map_edit[i][j] == 'N'
-				 || map_edit[i][j] == 'S' || map_edit[i][j] == 'E'
-				 || map_edit[i][j] == 'W')
-				if (is_surrounded(map_edit, i , j) == -1)
+				|| map_edit[i][j] == 'S' || map_edit[i][j] == 'E'
+				|| map_edit[i][j] == 'W')
+				if (is_surrounded(map_edit, i, j) == -1)
 					return (-1);
 			j++;
 		}

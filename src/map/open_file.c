@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include "parsing.h"
 
 char	*n_strjoin(char *str, char *join)

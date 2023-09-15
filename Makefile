@@ -5,6 +5,10 @@ LIBFT=-L ./libft -lft
 MLX42=MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 INCLUDE=-Iheaders/
 
+BONUS_OBJ=src/render/bonus/minimap.o\
+	src/render/bonus/movement.o\
+	src/render/bonus/render.o\
+
 FILES= src/main.c\
 		src/utils.c\
 	src/map/open_file.c \
@@ -15,12 +19,29 @@ FILES= src/main.c\
 	src/render/render_utils.c\
 	src/render/sky_floor.c\
 	src/render/raycast.c\
-	src/render/minimap/minimap.c\
 	src/render/movement.c\
+	src/render/render_wall.c\
 	src/data_init.c\
-	src/debug.c\
 
 OBJ=$(FILES:.c=.o)
+
+ifdef BONUS
+	FILES=src/main.c\
+	src/utils.c\
+	src/map/open_file.c \
+	src/map/check_map.c\
+	src/map/check_closed.c \
+	src/map/cub_to_cubed.c \
+	src/render/bonus/render.c\
+	src/render/render_utils.c\
+	src/render/sky_floor.c\
+	src/render/raycast.c\
+	src/render/bonus/movement.c\
+	src/render/render_wall.c\
+	src/render/bonus/minimap.c\
+	src/data_init.c\
+
+endif
 
 %.o : %.c
 	$(CC) -c $(CFLAGS) $(INCLUDE) -o $@ $<
@@ -33,9 +54,13 @@ $(NAME): $(OBJ)
 	$(MAKE) -C ./libft
 	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
+bonus:
+	make BONUS=1;
+
 clean:
 	$(MAKE) clean -C ./libft
 	rm -f $(OBJ)
+	rm -f $(BONUS_OBJ)
 
 fclean: clean
 	cd MLX42 && cmake -E remove_directory build
@@ -47,4 +72,4 @@ re: fclean all
 rebuild_mlx:
 	cd MLX42 && cmake -B build
 
-.PHONY: all re clean fclean rebuild_mlx
+.PHONY: all re clean fclean rebuild_mlx bonus

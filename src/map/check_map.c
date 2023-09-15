@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/08 13:08:46 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/15 13:55:06 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	get_map(t_parse *data, int i)
+int	get_map(t_parse *data, int i)
 {
 	while (count_c(data->file[i], ' ') + count_c(data->file[i], '\t')
 		== (int)ft_strlen(data->file[i]))
 		i++;
 	data->map = &data->file[i];
+	return (-1);
 }
 
 static int	check_line(char *line, int check_spawn)
@@ -38,7 +39,8 @@ static int	check_line(char *line, int check_spawn)
 			printf("Invalid symbol : %c\n", line[i]);
 			return (-1);
 		}
-		if (line[i] == 'N' || line[i] == 'W' || line[i] == 'S' || line[i] == 'E')
+		if (line[i] == 'N' || line[i] == 'W'
+			|| line[i] == 'S' || line[i] == 'E')
 			spawn++;
 		if (spawn > 1)
 			return (-1);
@@ -50,22 +52,17 @@ static int	check_line(char *line, int check_spawn)
 int	check_map(t_parse *data)
 {
 	int			i;
+
 	i = 0;
-	printf("|| PRINTING THE MAP ||\n");
 	while (data->map[i])
 	{
-		printf("%s\n",data->map[i]);
-		if (check_line(data->map[i], 0) == -1) // symbol checked here
+		if (check_line(data->map[i], 0) == -1)
 			return (-1);
 		i++;
 	}
-	if (check_line(data->map[i-1], 1) == -1) // I check for spawn here
+	if (check_line(data->map[i - 1], 1) == -1)
 		return (-1);
-	if (check_closed(data) == -1) //need check spawn valid ( pas hors map) DONE
-	{
-		printf("map isn't closed\n");
+	if (check_closed(data) == -1)
 		return (-1);
-	}
-	printf("|| END OF MAP (everything is good) ||\n");
 	return (1);
 }
