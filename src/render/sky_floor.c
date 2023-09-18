@@ -6,12 +6,11 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:28 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 13:42:05 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/18 17:16:29 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-#include "stdio.h"
 
 static void	draw_sky(mlx_image_t *img, char *ceil)
 {

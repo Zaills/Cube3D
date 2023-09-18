@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "render.h"
-#include "stdio.h"
 
 void	put_big_pixel(mlx_image_t *img, int x, int y, int color)
 {
