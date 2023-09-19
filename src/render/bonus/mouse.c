@@ -22,10 +22,16 @@ void	l_hook(void *param)
 	move = param;
 	//x -> W, y -> H
 	mlx_get_mouse_pos(move->render->mlx, &x, &y);
-	//mlx_hide_mouse;
-	printf("x: %d, y: %d\n", x, y);
-	if (x != WIDTH / 2 || y != WIDTH / 2)
+	if (y != HEIGHT / 2)
+		mlx_set_mouse_pos(move->render->mlx, x, HEIGHT / 2);
+	if (x > WIDTH / 2)
 	{
+		rotation_right(move);
+		mlx_set_mouse_pos(move->render->mlx, WIDTH / 2, HEIGHT / 2);
+	}
+	if (x < WIDTH / 2)
+	{
+		rotation_left(move);
 		mlx_set_mouse_pos(move->render->mlx, WIDTH / 2, HEIGHT / 2);
 	}
 }
