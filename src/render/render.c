@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 15:22:08 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/19 18:53:29 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	free_render(t_render *render)
 			mlx_delete_image(render->mlx, render->text[i]);
 		i++;
 	}
+	mlx_terminate(render->mlx);
 }
 
 static int	init_render(t_render *render, t_parse *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 13:55:16 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/19 19:16:27 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define CEIL_ERR 2
 # define ORDER_SYMB 3
 # define MAP_ERR 4
+# define REDEF_FLOOR 5
+# define REDEF_CEIL 6
 
 char	**open_map(int ac, char **av);
 void	close_map(t_parse *data);
