@@ -13,11 +13,8 @@
 #include "render.h"
 #include <math.h>
 
-void	movement_ver(mlx_key_data_t key, t_move *move)
+void	movement_ver(mlx_key_data_t key, t_move *move, t_render	*render)
 {
-	t_render	*render;
-
-	render = move->render;
 	if (key.key == MLX_KEY_W)
 	{
 		if (verif_move(move->data->map
@@ -43,11 +40,8 @@ void	movement_ver(mlx_key_data_t key, t_move *move)
 	minimap(move->data, move->render, render->spawn_x, render->spawn_y);
 }
 
-void	movement_hor(mlx_key_data_t key, t_move *move)
+void	movement_hor(mlx_key_data_t key, t_move *move, t_render	*render)
 {
-	t_render	*render;
-
-	render = move->render;
 	if (key.key == MLX_KEY_A)
 	{
 		if (verif_move(move->data->map
@@ -123,9 +117,9 @@ void	key_hook(mlx_key_data_t key, void *param)
 
 	move = param;
 	if (key.key == MLX_KEY_W || key.key == MLX_KEY_S)
-		movement_ver(key, move);
+		movement_ver(key, move, move->render);
 	if (key.key == MLX_KEY_A || key.key == MLX_KEY_D)
-		movement_hor(key, move);
+		movement_hor(key, move, move->render);
 	if (key.key == MLX_KEY_LEFT)
 		rotation_left(move);
 	if (key.key == MLX_KEY_RIGHT)
