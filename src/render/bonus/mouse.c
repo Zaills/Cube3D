@@ -16,11 +16,10 @@
 void	l_hook(void *param)
 {
 	t_move	*move;
-
-	move = param;
 	int32_t	x;
 	int32_t	y;
 
+	move = param;
 	//x -> W, y -> H
 	mlx_get_mouse_pos(move->render->mlx, &x, &y);
 	//mlx_hide_mouse;

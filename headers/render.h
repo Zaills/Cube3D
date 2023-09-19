@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 15:21:41 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/19 16:48:46 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ typedef struct move
 
 void	render(t_parse *data);
 void	render_sky_floor(t_render *render, t_parse *data);
-void	minimap(t_parse *data, t_render *render);
+void	minimap(t_parse *data, t_render *r, int x, int y);
 void	raycast(t_render *render, char **map);
 void	draw_wall(double wall_dist, int i, t_render *render);
-//UTILS
+//Utils
 void	key_hook(mlx_key_data_t key, void *param);
 void	l_hook(void *param);
 void	init_move(t_move *move, t_render *render, t_parse *data);
@@ -70,5 +70,8 @@ void	get_player_pos(char **map, t_render *render);
 int		get_rgba(char *type);
 int		get_texture(t_render *render);
 int		encode_color(int x, int y, t_render *render);
-
+//Minimap utils
+void	draw_outline_place(t_render *render);
+void	big_pix(mlx_image_t *img, int x, int y, int color);
+int		get_height(char **map);
 #endif

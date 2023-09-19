@@ -6,8 +6,10 @@ MLX42=MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 INCLUDE=-Iheaders/
 
 BONUS_OBJ=src/render/bonus/minimap.o\
+	src/render/bonus/minimap_utils.o\
 	src/render/bonus/movement.o\
 	src/render/bonus/render.o\
+	src/render/bonus/mouse.o\
 
 FILES= src/main.c\
 		src/utils.c\
@@ -43,6 +45,7 @@ ifdef BONUS
 	src/render/movement_utils.c\
 	src/render/render_wall.c\
 	src/render/bonus/minimap.c\
+	src/render/bonus/minimap_utils.c\
 	src/map/close_file.c \
 	src/data_init.c\
 
