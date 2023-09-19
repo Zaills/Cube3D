@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:27 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/19 15:22:08 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	init_render(t_render *render, t_parse *data)
 {
 	render->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
-	render->minimap = mlx_new_image(render->mlx, 500, 500);
+	render->minimap = mlx_new_image(render->mlx, 110, 110);
 	render->player = mlx_new_image(render->mlx, 10, 10);
 	get_player_pos(data->map, render);
 	render->text[0] = NULL;

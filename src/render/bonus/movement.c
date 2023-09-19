@@ -41,7 +41,6 @@ void	movement_ver(mlx_key_data_t key, t_move *move)
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
 	minimap(move->data, move->render);
-	render_player(render, render->mlx);
 }
 
 void	movement_hor(mlx_key_data_t key, t_move *move)
@@ -72,7 +71,6 @@ void	movement_hor(mlx_key_data_t key, t_move *move)
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
 	minimap(move->data, move->render);
-	render_player(render, render->mlx);
 }
 
 void	rotation_right(t_move *move)
@@ -95,7 +93,6 @@ void	rotation_right(t_move *move)
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
 	minimap(move->data, move->render);
-	render_player(render, render->mlx);
 }
 
 void	rotation_left(t_move *move)
@@ -118,7 +115,6 @@ void	rotation_left(t_move *move)
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
 	minimap(move->data, move->render);
-	render_player(render, render->mlx);
 }
 
 void	key_hook(mlx_key_data_t key, void *param)

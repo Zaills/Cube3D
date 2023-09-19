@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 11:46:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:50:10 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	render(t_parse *data)
 	init_move(&move, &render, data);
 	render_sky_floor(&render, data);
 	minimap(data, &render);
-	render_player(&render, render.mlx);
 	raycast(&render, data->map);
 	mlx_key_hook(render.mlx, &key_hook, &move);
 	mlx_loop_hook(render.mlx, &l_hook, &move);
