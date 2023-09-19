@@ -35,6 +35,7 @@ ifdef BONUS
 	src/map/check_closed.c \
 	src/map/cub_to_cubed.c \
 	src/render/bonus/render.c\
+	src/render/bonus/mouse.c\
 	src/render/render_utils.c\
 	src/render/sky_floor.c\
 	src/render/raycast.c\

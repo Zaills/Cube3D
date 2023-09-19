@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/18 17:09:13 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/19 11:48:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	draw_wall(double wall_dist, int i, t_render *render);
 //UTILS
 void	render_player(t_render *render, mlx_t *mlx);
 void	key_hook(mlx_key_data_t key, void *param);
+void	l_hook(void *param);
 void	init_move(t_move *move, t_render *render, t_parse *data);
 int		verif_move(char nxt);
 void	get_player_pos(char **map, t_render *render);
