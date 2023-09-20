@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:28:27 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 17:46:13 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:47:24 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	draw_bg(t_render *render)
 	{
 		while (j < 10)
 		{
-			big_pix(render->minimap, i*10, j*10, 0x0000FFFF);
+			big_pix(render->minimap, i * 10, j * 10, 0x0000FFFF);
 			j++;
 		}
 		j = 0;

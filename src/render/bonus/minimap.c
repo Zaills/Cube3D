@@ -52,9 +52,9 @@ void	minimap(t_parse *data, t_render *r, int x, int y)
 
 	h = get_height(data->map);
 	i = 0;
-	j = 0;
+	j = -1;
 	draw_bg(r);
-	while (j < 5)
+	while (++j < 5)
 	{
 		while (i < 5)
 		{
@@ -68,7 +68,6 @@ void	minimap(t_parse *data, t_render *r, int x, int y)
 				draw_botleft(data->map[x + j][y - i], r, i, j);
 			i++;
 		}
-		j++;
 		i = 0;
 	}
 	draw_outline_place(r);
