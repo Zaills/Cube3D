@@ -67,8 +67,7 @@ bonus:
 
 clean:
 	$(MAKE) clean -C ./libft
-	rm -f $(OBJ)
-	rm -f $(BONUS_OBJ)
+	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	cd MLX42 && cmake -E remove_directory build
