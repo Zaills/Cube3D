@@ -63,7 +63,6 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
 
 bonus:
-	make fclean;
 	make BONUS=1;
 
 clean:

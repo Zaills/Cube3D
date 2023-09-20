@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 17:09:43 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/20 17:44:42 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		get_rgba(char *type);
 int		get_texture(t_render *render);
 int		encode_color(int x, int y, t_render *render);
 //Minimap utils
+void	draw_bg(t_render *render);
 void	draw_outline_place(t_render *render);
 void	big_pix(mlx_image_t *img, int x, int y, int color);
 int		get_height(char **map);

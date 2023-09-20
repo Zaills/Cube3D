@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:31 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 15:12:14 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/20 17:16:31 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	get_player_pos(char **map, t_render *render)
 			{
 				render->spawn_y = j + 0.5;
 				render->spawn_x = i + 0.5;
-				map[i][j] = '0';
 				get_player_dir(map[i][j], render);
+				map[i][j] = '0';
 				return ;
 			}
 			j++;

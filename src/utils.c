@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:19:00 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 19:48:16 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:38:00 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ int	output_error(int code)
 		printf("Parse error : identfier order and / or incorrect identfier\n");
 	if (code == MAP_ERR)
 		printf("Parse error : Incorrect map\n");
-	if (code == REDEF_FLOOR)
-		printf("Parse warning  : floor value redefined\n");
-	if (code == REDEF_CEIL)
-		printf("Parse warning : floor value redefined\n");
 	return (1);
 }
 
@@ -60,4 +56,14 @@ void	free_parsedata(t_parse *data)
 	if (data->we_text != NULL)
 		free(data->we_text);
 	close_map(data);
+}
+
+char	*skip_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while ((str[i] == ' ' || str[i] == '\t') && str[i])
+		i++;
+	return (&str[i]);
 }

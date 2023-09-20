@@ -6,7 +6,7 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 19:16:27 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:42:51 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define CEIL_ERR 2
 # define ORDER_SYMB 3
 # define MAP_ERR 4
-# define REDEF_FLOOR 5
-# define REDEF_CEIL 6
 
 char	**open_map(int ac, char **av);
 void	close_map(t_parse *data);
@@ -32,5 +30,7 @@ int		check_map(t_parse *data);
 int		check_closed(t_parse *data);
 int		output_error(int code);
 int		count_c(char *str, char c);
+int		precheck_parse(t_parse *data);
+char	*skip_space(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:28:27 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 16:44:30 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/20 17:46:13 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,23 @@ void	draw_outline_place(t_render *render)
 	}
 	big_pix(render->minimap, 5 * 10, 5 * 10, 0x00FF00FF);
 	mlx_image_to_window(render->mlx, render->minimap, 0, 0);
+}
+
+void	draw_bg(t_render *render)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 1;
+	while (i < 10)
+	{
+		while (j < 10)
+		{
+			big_pix(render->minimap, i*10, j*10, 0x0000FFFF);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }

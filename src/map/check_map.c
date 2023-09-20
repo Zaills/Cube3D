@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/15 16:02:26 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/20 17:36:46 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ static int	check_line(char *line, int check_spawn)
 	return (1);
 }
 
+static int	check_emptyline(t_parse *data)
+{
+	int		i;
+	char	*temp;
+	int		stop;
+
+	stop = 0;
+	i = -1;
+	while (data->map[++i])
+	{
+		temp = skip_space(data->map[i]);
+		if (ft_strlen(temp) == 0)
+			stop = 1;
+		else if (stop == 1)
+			return (-1);
+	}
+	return (1);
+}
+
 int	check_map(t_parse *data)
 {
 	int			i;
@@ -76,7 +95,7 @@ int	check_map(t_parse *data)
 		printf("Parse error : No spawn\n");
 		return (-1);
 	}
-	if (check_closed(data) == -1)
+	if (check_closed(data) == -1 || check_emptyline(data) == -1)
 		return (-1);
 	return (1);
 }

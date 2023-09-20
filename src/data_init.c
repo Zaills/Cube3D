@@ -6,31 +6,17 @@
 /*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:31:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 20:00:59 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:37:40 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static char	*skip_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while ((str[i] == ' ' || str[i] == '\t') && str[i])
-		i++;
-	return (&str[i]);
-}
-
-static int	check_identifier(char *str, char *c, t_parse *data) //leaks si 2 fois C ou F
+static int	check_identifier(char *str, char *c)
 {
 	char	*temp;
 	int		i;
 
-	if (data->floor != NULL && c[0] == 'F')
-		return (output_error(REDEF_FLOOR));
-	if (data->ceil != NULL && ft_strncmp("C", c, 1) == 0)
-		return (output_error(REDEF_CEIL));
 	i = 0;
 	if (ft_strncmp(str, c, 1) == 0)
 	{
@@ -104,18 +90,10 @@ int	init_identifier(t_parse *data)
 		temp = skip_space(data->file[j]);
 		if (try_get_texture(temp, data) == 1)
 			continue ;
-		if (check_identifier(temp, "F", data) == 1)
-		{
-			if (data->floor != NULL)
-				free(data->floor);
+		if (check_identifier(temp, "F") == 1)
 			data->floor = ft_strtrim(&temp[1], " \t");
-		}
-		else if (check_identifier(temp, "C", data) == 1)
-		{
-			if (data->ceil != NULL)
-				free(data->ceil);
+		else if (check_identifier(temp, "C") == 1)
 			data->ceil = ft_strtrim(&temp[1], " \t");
-		}
 		else if (count_c(temp, ' ') + count_c(temp, '\t')
 			!= (int)ft_strlen(temp))
 			return (output_error(ORDER_SYMB));
@@ -123,3 +101,31 @@ int	init_identifier(t_parse *data)
 	return (get_map(data, j));
 }
 
+int	precheck_parse(t_parse *data)
+{
+	int		i;
+	int		count;
+	char	*temp;
+
+	count = 0;
+	i = -1;
+	while (data->file[++i])
+	{
+		temp = skip_space(data->file[i]);
+		if (ft_strncmp(temp, "NO", 2) == 0)
+			count++;
+		else if (ft_strncmp(temp, "SO", 2) == 0)
+			count++;
+		else if (ft_strncmp(temp, "WE", 2) == 0)
+			count++;
+		else if (ft_strncmp(temp, "EA", 2) == 0)
+			count++;
+		else if (check_identifier(temp, "C") == 1)
+			count++;
+		else if (check_identifier(temp, "F") == 1)
+			count++;
+	}
+	if (count != 6)
+		return (-1);
+	return (1);
+}

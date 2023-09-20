@@ -128,5 +128,4 @@ void	key_hook(mlx_key_data_t key, void *param)
 		mlx_close_window(move->render->mlx);
 	if (key.key == MLX_KEY_LEFT_ALT && key.action == MLX_PRESS)
 		lock_mouse(move);
-
 }

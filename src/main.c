@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:34:01 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/18 17:04:58 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/20 17:36:08 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ int	main(int ac, char **av)
 	data.file = open_map(ac, av);
 	if (!data.file)
 		return (0);
+	if (precheck_parse(&data) == -1)
+	{
+		free_parsedata(&data);
+		printf("Parse error : incorrect identifier\n");
+		return (1);
+	}
 	if (init_identifier(&data) == 1 || verif_beg_struct(&data))
 	{
 		free_parsedata(&data);
