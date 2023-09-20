@@ -98,6 +98,7 @@ void	render(t_parse *data)
 	if (init_render(&render, data) == -1)
 		return ;
 	init_move(&move, &render, data);
+	mlx_set_cursor_mode(render.mlx, 0x00034002);
 	render_sky_floor(&render, data);
 	minimap(data, &render, render.spawn_x, render.spawn_y);
 	raycast(&render, data->map);

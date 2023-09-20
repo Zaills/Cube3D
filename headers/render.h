@@ -54,6 +54,7 @@ typedef struct move
 {
 	t_render	*render;
 	t_parse		*data;
+	bool		ml;
 }		t_move;
 
 void	render(t_parse *data);
@@ -64,6 +65,7 @@ void	draw_wall(double wall_dist, int i, t_render *render);
 //Utils
 void	key_hook(mlx_key_data_t key, void *param);
 void	l_hook(void *param);
+void	lock_mouse(t_move *move);
 void	rotation_left(t_move *move);
 void	rotation_right(t_move *move);
 void	init_move(t_move *move, t_render *render, t_parse *data);

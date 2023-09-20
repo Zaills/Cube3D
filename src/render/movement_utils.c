@@ -16,6 +16,7 @@ void	init_move(t_move *move, t_render *render, t_parse *data)
 {
 	move->render = render;
 	move->data = data;
+	move->ml = 1;
 }
 
 int	verif_move(char nxt)

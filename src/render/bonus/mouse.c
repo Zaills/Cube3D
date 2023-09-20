@@ -20,7 +20,8 @@ void	l_hook(void *param)
 	int32_t	y;
 
 	move = param;
-	//x -> W, y -> H
+	if (move->ml == 0)
+		return ;
 	mlx_get_mouse_pos(move->render->mlx, &x, &y);
 	if (y != HEIGHT / 2)
 		mlx_set_mouse_pos(move->render->mlx, x, HEIGHT / 2);
@@ -34,4 +35,13 @@ void	l_hook(void *param)
 		rotation_left(move);
 		mlx_set_mouse_pos(move->render->mlx, WIDTH / 2, HEIGHT / 2);
 	}
+}
+
+void	lock_mouse(t_move *move)
+{
+	move->ml = !move->ml;
+	if (move->ml)
+		mlx_set_cursor_mode(move->render->mlx, 0x00034002);
+	else
+		mlx_set_cursor_mode(move->render->mlx, 0x00034001);
 }
