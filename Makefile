@@ -1,5 +1,5 @@
-NAME=cubed
-BONUS=cubed_bonus
+NAME=cub3D
+BONUS=cub3D_bonus
 CC=cc
 CFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
