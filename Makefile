@@ -1,9 +1,14 @@
 NAME=cubed
+NAME_BONUS=cubed_bonus
 CC=cc
 CFLAGS=-Wall -Werror -Wextra -g
 LIBFT=-L ./libft -lft
 MLX42=MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 INCLUDE=-Iheaders/
+
+MAIN_OBJ=src/render/movement.o\
+	src/render/render.o\
+	cubed\
 
 BONUS_OBJ=src/render/bonus/minimap.o\
 	src/render/bonus/minimap_utils.o\
@@ -29,7 +34,10 @@ FILES= src/main.c\
 
 OBJ=$(FILES:.c=.o)
 
+compile=$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
+
 ifdef BONUS
+	compile=$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME_BONUS)
 	FILES=src/main.c\
 	src/utils.c\
 	src/map/open_file.c \
@@ -59,11 +67,13 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	cd MLX42 && cmake -B build
 	cd MLX42 && cmake --build build -j4
+	rm -f $(NAME_BONUS)
 	$(MAKE) -C ./libft
-	$(CC) $(OBJ) $(LIBFT) $(MLX42) -o $(NAME)
+	$(compile)
 
 bonus:
-	make BONUS=1;
+	rm -f $(MAIN_OBJ)
+	make BONUS=1
 
 clean:
 	$(MAKE) clean -C ./libft
@@ -72,7 +82,7 @@ clean:
 fclean: clean
 	cd MLX42 && cmake -E remove_directory build
 	$(MAKE) fclean -C ./libft
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
