@@ -6,7 +6,7 @@
 /*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:43:56 by nmorandi          #+#    #+#             */
-/*   Updated: 2023/09/15 13:35:44 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/25 21:07:32 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ static int	is_surrounded(char **map, int i, int j)
 	return (1);
 }
 
+static int	need_check(char c)
+{
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (-1);
+}
+
 int	check_closed(t_parse *data)
 {
 	int		i;
@@ -66,21 +73,21 @@ int	check_closed(t_parse *data)
 	map_edit = data->map;
 	if (!map_edit)
 		return (-1);
-	j = 0;
-	i = 0;
-	while (map_edit[i])
+	j = -1;
+	i = -1;
+	while (map_edit[++i])
 	{
-		while (map_edit[i][j])
+		while (map_edit[i][++j])
 		{
-			if (map_edit[i][j] == '0' || map_edit[i][j] == 'N'
-				|| map_edit[i][j] == 'S' || map_edit[i][j] == 'E'
-				|| map_edit[i][j] == 'W')
+			if (need_check(map_edit[i][j]) == 1)
+			{
+				if (i + 1 == data->height)
+					return (-1);
 				if (is_surrounded(map_edit, i, j) == -1)
 					return (-1);
-			j++;
+			}
 		}
-		i++;
-		j = 0;
+		j = -1;
 	}
 	return (1);
 }
