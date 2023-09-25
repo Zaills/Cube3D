@@ -14,7 +14,7 @@
 # define RENDER_H
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "parse_struct.h"
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 # define HEIGHT 1000
 # define WIDTH 1800
 # define MOVE_SPEED 0.1
