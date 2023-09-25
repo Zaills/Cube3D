@@ -27,10 +27,11 @@ static int	check_identifier(char *str, char *c, t_parse *data) //leaks si 2 fois
 	char	*temp;
 	int		i;
 
-	if (data->floor != NULL && c[0] == 'F')
+	(void) data;
+/*	if (data->floor != NULL && c[0] == 'F')
 		return (output_error(REDEF_FLOOR));
 	if (data->ceil != NULL && ft_strncmp("C", c, 1) == 0)
-		return (output_error(REDEF_CEIL));
+		return (output_error(REDEF_CEIL));*/
 	i = 0;
 	if (ft_strncmp(str, c, 1) == 0)
 	{
@@ -122,4 +123,3 @@ int	init_identifier(t_parse *data)
 	}
 	return (get_map(data, j));
 }
-
