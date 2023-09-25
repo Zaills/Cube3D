@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rvinour <rvinour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:28:27 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 17:47:24 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:36:53 by rvinour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int	get_height(char **map)
 
 	i = 0;
 	while (map[i])
+	{
+		if (!ft_strlen(map[i]))
+			return (i);
 		i++;
+	}
 	return (i);
 }
 

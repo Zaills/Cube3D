@@ -64,7 +64,7 @@ void	minimap(t_parse *data, t_render *r, int x, int y)
 				draw_upright(data->map[x - j][y + i], r, i, j);
 			if (x - j >= 0 && y - i >= 0)
 				draw_upleft(data->map[x - j][y - i], r, i, j);
-			if (y - i >= 0 && x + j < h)
+			if (x + j < h && y - i >= 0)
 				draw_botleft(data->map[x + j][y - i], r, i, j);
 			i++;
 		}
