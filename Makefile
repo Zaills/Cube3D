@@ -1,7 +1,7 @@
 NAME=cub3D
 BONUS=cub3D_bonus
 CC=cc
-CFLAGS=-Wall -Werror -Wextra -g
+CFLAGS=-Wall -Werror -Wextra -g -ofast
 LIBFT=-L ./libft -lft
 MLX42=MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 INCLUDE=-Iheaders/

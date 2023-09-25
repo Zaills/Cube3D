@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 18:53:29 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:35:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	render(t_parse *data)
 	render_sky_floor(&render, data);
 	raycast(&render, data->map);
 	mlx_key_hook(render.mlx, &key_hook, &move);
+	mlx_loop_hook(render.mlx, &loop_hook, &move);
 	mlx_loop(render.mlx);
 	mlx_terminate(render.mlx);
 }

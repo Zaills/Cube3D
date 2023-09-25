@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 17:44:42 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:20:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	raycast(t_render *render, char **map);
 void	draw_wall(double wall_dist, int i, t_render *render);
 //Utils
 void	key_hook(mlx_key_data_t key, void *param);
+void	loop_hook(void *param);
 void	l_hook(void *param);
 void	lock_mouse(t_move *move);
 void	rotation_left(t_move *move);
