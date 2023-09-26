@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 03:36:06 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 17:36:46 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:54:31 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_map(t_parse *data, int i)
 		== (int)ft_strlen(data->file[i]))
 		i++;
 	data->map = &data->file[i];
+	data->height = get_height(data->map);
 	return (-1);
 }
 

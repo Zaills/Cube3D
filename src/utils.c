@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:19:00 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 17:38:00 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:52:58 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	get_height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (!ft_strlen(map[i]))
+			return (i);
+		i++;
+	}
+	return (i);
+}
 
 int	output_error(int code)
 {

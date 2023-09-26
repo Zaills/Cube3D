@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:33:57 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/20 16:42:51 by nmorandi         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:53:06 by gouz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ORDER_SYMB 3
 # define MAP_ERR 4
 
+int		get_height(char **map);
 char	**open_map(int ac, char **av);
 void	close_map(t_parse *data);
 char	**cub_to_cubed(char *cub);
