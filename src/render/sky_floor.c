@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sky_floor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:55:28 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/18 17:16:29 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/26 16:59:12 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	render_sky_floor(t_render *render, t_parse *data)
 {
 	draw_sky(render->view, data->ceil);
 	draw_floor(render->view, data->floor);
-	mlx_image_to_window(render->mlx, render->view, 0, 0);
 }

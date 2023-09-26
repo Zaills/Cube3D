@@ -15,33 +15,33 @@
 static void	draw_upright(char c, t_render *render, int i, int j)
 {
 	if (c == '0')
-		big_pix(render->minimap, (5 + i) * 10, (5 - j) * 10, 0xFFFFFFFF);
+		big_pix(render->view, (5 + i) * 10, (5 - j) * 10, 0xFFFFFFFF);
 	if (c == '1')
-		big_pix(render->minimap, (5 + i) * 10, (5 - j) * 10, 0x000000FF);
+		big_pix(render->view, (5 + i) * 10, (5 - j) * 10, 0x000000FF);
 }
 
 static void	draw_botright(char c, t_render *render, int i, int j)
 {
 	if (c == '0')
-		big_pix(render->minimap, (5 + i) * 10, (5 + j) * 10, 0xFFFFFFFF);
+		big_pix(render->view, (5 + i) * 10, (5 + j) * 10, 0xFFFFFFFF);
 	if (c == '1')
-		big_pix(render->minimap, (5 + i) * 10, (5 + j) * 10, 0x000000FF);
+		big_pix(render->view, (5 + i) * 10, (5 + j) * 10, 0x000000FF);
 }
 
 static void	draw_upleft(char c, t_render *render, int i, int j)
 {
 	if (c == '0')
-		big_pix(render->minimap, (5 - i) * 10, (5 - j) * 10, 0xFFFFFFFF);
+		big_pix(render->view, (5 - i) * 10, (5 - j) * 10, 0xFFFFFFFF);
 	if (c == '1')
-		big_pix(render->minimap, (5 - i) * 10, (5 - j) * 10, 0x000000FF);
+		big_pix(render->view, (5 - i) * 10, (5 - j) * 10, 0x000000FF);
 }
 
 static void	draw_botleft(char c, t_render *render, int i, int j)
 {
 	if (c == '0')
-		big_pix(render->minimap, (5 - i) * 10, (5 + j) * 10, 0xFFFFFFFF);
+		big_pix(render->view, (5 - i) * 10, (5 + j) * 10, 0xFFFFFFFF);
 	if (c == '1')
-		big_pix(render->minimap, (5 - i) * 10, (5 + j) * 10, 0x000000FF);
+		big_pix(render->view, (5 - i) * 10, (5 + j) * 10, 0x000000FF);
 }
 
 void	minimap(t_parse *data, t_render *r, int x, int y)

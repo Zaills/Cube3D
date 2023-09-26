@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/26 13:29:31 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/26 17:02:33 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ void	free_render(t_render *render)
 	i = 0;
 	if (render->view != NULL)
 		mlx_delete_image(render->mlx, render->view);
-	if (render->minimap != NULL)
-		mlx_delete_image(render->mlx, render->minimap);
-	if (render->player != NULL)
-		mlx_delete_image(render->mlx, render->player);
 	while (i < 3)
 	{
 		if (render->text[i] != NULL)
@@ -74,8 +70,6 @@ static int	init_render(t_render *render, t_parse *data)
 {
 	render->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	render->view = mlx_new_image(render->mlx, WIDTH, HEIGHT);
-	render->minimap = mlx_new_image(render->mlx, 500, 500);
-	render->player = mlx_new_image(render->mlx, 10, 10);
 	get_player_pos(data->map, render);
 	render->text[0] = NULL;
 	render->text[1] = NULL;
@@ -102,6 +96,7 @@ void	render(t_parse *data)
 	render_sky_floor(&render, data);
 	minimap(data, &render, render.spawn_x, render.spawn_y);
 	raycast(&render, data->map);
+	mlx_image_to_window(render.mlx, render.view, 0, 0);
 	mlx_key_hook(render.mlx, &key_hook, &move);
 	mlx_loop_hook(render.mlx, &l_hook, &move);
 	mlx_loop_hook(render.mlx, &loop_hook, &move);

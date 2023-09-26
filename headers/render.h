@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:25:13 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/25 20:53:03 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/26 16:54:50 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct render
 {
 	mlx_t			*mlx;
 	mlx_image_t		*view;
-	mlx_image_t		*minimap;
-	mlx_image_t		*player;
 	mlx_image_t		*text[4];
 	double			raydirx;
 	double			raydiry;

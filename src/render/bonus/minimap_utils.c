@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nmorandi <nmorandi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:28:27 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/25 20:49:13 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/26 17:00:54 by nmorandi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ void	draw_outline_place(t_render *render)
 	i = 0;
 	while (i < 11)
 	{
-		big_pix(render->minimap, i * 10, 0, 0xFF0000FF);
-		big_pix(render->minimap, i * 10, 100, 0xFF0000FF);
-		big_pix(render->minimap, 0, i * 10, 0xFF0000FF);
-		big_pix(render->minimap, 100, i * 10, 0xFF0000FF);
+		big_pix(render->view, i * 10, 0, 0xFF0000FF);
+		big_pix(render->view, i * 10, 100, 0xFF0000FF);
+		big_pix(render->view, 0, i * 10, 0xFF0000FF);
+		big_pix(render->view, 100, i * 10, 0xFF0000FF);
 		i++;
 	}
-	big_pix(render->minimap, 5 * 10, 5 * 10, 0x00FF00FF);
-	mlx_image_to_window(render->mlx, render->minimap, 0, 0);
+	big_pix(render->view, 5 * 10, 5 * 10, 0x00FF00FF);
 }
 
 void	draw_bg(t_render *render)
@@ -59,7 +58,7 @@ void	draw_bg(t_render *render)
 	{
 		while (j < 10)
 		{
-			big_pix(render->minimap, i * 10, j * 10, 0x0000FFFF);
+			big_pix(render->view, i * 10, j * 10, 0x0000FFFF);
 			j++;
 		}
 		j = 0;

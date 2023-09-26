@@ -13,11 +13,8 @@
 #include "render.h"
 #include <math.h>
 
-void	movement_ver(char key, t_move *move)
+void	movement_ver(char key, t_move *move, t_render *render)
 {
-	t_render	*render;
-
-	render = move->render;
 	if (key == 'W')
 	{
 		if (verif_move(move->data->map
@@ -40,13 +37,11 @@ void	movement_ver(char key, t_move *move)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, render, render->spawn_x, render->spawn_y);
 }
 
-void	movement_hor(char key, t_move *move)
+void	movement_hor(char key, t_move *move, t_render *render)
 {
-	t_render	*render;
-
-	render = move->render;
 	if (key == 'A')
 	{
 		if (verif_move(move->data->map
@@ -69,6 +64,7 @@ void	movement_hor(char key, t_move *move)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, render, render->spawn_x, render->spawn_y);
 }
 
 void	rotation_right(t_move *move)
@@ -90,6 +86,7 @@ void	rotation_right(t_move *move)
 		+ render->planey * cos(-MOVE_SPEED);
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, render, render->spawn_x, render->spawn_y);
 }
 
 void	rotation_left(t_move *move)
@@ -111,6 +108,7 @@ void	rotation_left(t_move *move)
 		+ render->planey * cos(MOVE_SPEED);
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
+	minimap(move->data, render, render->spawn_x, render->spawn_y);
 }
 
 void	loop_hook(void *param)
@@ -119,13 +117,13 @@ void	loop_hook(void *param)
 
 	move = param;
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_W))
-		movement_ver('W', move);
+		movement_ver('W', move, move->render);
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_S))
-		movement_ver('S', move);
+		movement_ver('S', move, move->render);
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_A))
-		movement_hor('A', move);
+		movement_hor('A', move, move->render);
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_D))
-		movement_hor('D', move);
+		movement_hor('D', move, move->render);
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_LEFT))
 		rotation_left(move);
 	if (mlx_is_key_down(move->render->mlx, MLX_KEY_RIGHT))
