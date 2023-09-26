@@ -113,15 +113,6 @@ void	rotation_left(t_move *move)
 	raycast(render, move->data->map);
 }
 
-void	key_hook(mlx_key_data_t key, void *param)
-{
-	t_move		*move;
-
-	move = param;
-	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
-		mlx_close_window(move->render->mlx);
-}
-
 void	loop_hook(void *param)
 {
 	t_move		*move;

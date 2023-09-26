@@ -13,9 +13,12 @@
 #include "render.h"
 #include <math.h>
 
-void	movement_ver(mlx_key_data_t key, t_move *move, t_render	*render)
+void	movement_ver(char key, t_move *move)
 {
-	if (key.key == MLX_KEY_W)
+	t_render	*render;
+
+	render = move->render;
+	if (key == 'W')
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x + render->dirx * (MOVE_SPEED + 0.01))]
@@ -25,7 +28,7 @@ void	movement_ver(mlx_key_data_t key, t_move *move, t_render	*render)
 			[(int)(render->spawn_y + render->diry * (MOVE_SPEED + 0.01))]))
 			render->spawn_y += render->diry * MOVE_SPEED;
 	}
-	if (key.key == MLX_KEY_S)
+	if (key == 'S')
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x - render->dirx * (MOVE_SPEED + 0.01))]
@@ -37,12 +40,14 @@ void	movement_ver(mlx_key_data_t key, t_move *move, t_render	*render)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
-	minimap(move->data, move->render, render->spawn_x, render->spawn_y);
 }
 
-void	movement_hor(mlx_key_data_t key, t_move *move, t_render	*render)
+void	movement_hor(char key, t_move *move)
 {
-	if (key.key == MLX_KEY_A)
+	t_render	*render;
+
+	render = move->render;
+	if (key == 'A')
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x - render->planex * (MOVE_SPEED + 0.01))]
@@ -52,7 +57,7 @@ void	movement_hor(mlx_key_data_t key, t_move *move, t_render	*render)
 			[(int)(render->spawn_y - render->planey * (MOVE_SPEED + 0.01))]))
 			render->spawn_y -= render->planey * MOVE_SPEED;
 	}
-	if (key.key == MLX_KEY_D)
+	if (key == 'D')
 	{
 		if (verif_move(move->data->map
 				[(int)(render->spawn_x + render->planex * (MOVE_SPEED + 0.01))]
@@ -64,7 +69,6 @@ void	movement_hor(mlx_key_data_t key, t_move *move, t_render	*render)
 	}
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
-	minimap(move->data, move->render, render->spawn_x, render->spawn_y);
 }
 
 void	rotation_right(t_move *move)
@@ -86,7 +90,6 @@ void	rotation_right(t_move *move)
 		+ render->planey * cos(-MOVE_SPEED);
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
-	minimap(move->data, move->render, render->spawn_x, render->spawn_y);
 }
 
 void	rotation_left(t_move *move)
@@ -108,24 +111,23 @@ void	rotation_left(t_move *move)
 		+ render->planey * cos(MOVE_SPEED);
 	render_sky_floor(render, move->data);
 	raycast(render, move->data->map);
-	minimap(move->data, move->render, render->spawn_x, render->spawn_y);
 }
 
-void	key_hook(mlx_key_data_t key, void *param)
+void	loop_hook(void *param)
 {
 	t_move		*move;
 
 	move = param;
-	if (key.key == MLX_KEY_W || key.key == MLX_KEY_S)
-		movement_ver(key, move, move->render);
-	if (key.key == MLX_KEY_A || key.key == MLX_KEY_D)
-		movement_hor(key, move, move->render);
-	if (key.key == MLX_KEY_LEFT)
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_W))
+		movement_ver('W', move);
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_S))
+		movement_ver('S', move);
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_A))
+		movement_hor('A', move);
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_D))
+		movement_hor('D', move);
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_LEFT))
 		rotation_left(move);
-	if (key.key == MLX_KEY_RIGHT)
+	if (mlx_is_key_down(move->render->mlx, MLX_KEY_RIGHT))
 		rotation_right(move);
-	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
-		mlx_close_window(move->render->mlx);
-	if (key.key == MLX_KEY_LEFT_ALT && key.action == MLX_PRESS)
-		lock_mouse(move);
 }

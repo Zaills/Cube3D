@@ -25,3 +25,12 @@ int	verif_move(char nxt)
 		return (1);
 	return (0);
 }
+
+void	key_hook(mlx_key_data_t key, void *param)
+{
+	t_move		*move;
+
+	move = param;
+	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
+		mlx_close_window(move->render->mlx);
+}

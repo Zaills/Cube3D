@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gouz <gouz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 17:21:26 by gouz              #+#    #+#             */
-/*   Updated: 2023/09/19 16:46:14 by gouz             ###   ########.fr       */
+/*   Updated: 2023/09/26 13:29:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	render(t_parse *data)
 	raycast(&render, data->map);
 	mlx_key_hook(render.mlx, &key_hook, &move);
 	mlx_loop_hook(render.mlx, &l_hook, &move);
+	mlx_loop_hook(render.mlx, &loop_hook, &move);
 	mlx_loop(render.mlx);
 	mlx_terminate(render.mlx);
 }
