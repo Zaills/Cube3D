@@ -34,7 +34,6 @@ FILE_BONUS=src/main.c\
 	src/render/render_utils.c\
 	src/render/sky_floor.c\
 	src/render/raycast.c\
-	src/render/movement_utils.c\
 	src/render/render_wall.c\
 	src/data_init.c\
 	src/render/bonus/render.c\
@@ -42,6 +41,7 @@ FILE_BONUS=src/main.c\
 	src/render/bonus/movement.c\
 	src/render/bonus/minimap.c\
 	src/render/bonus/minimap_utils.c\
+	src/render/bonus/movement_utils.c\
 
 OBJ_BONUS=$(FILE_BONUS:.c=.o)
 
